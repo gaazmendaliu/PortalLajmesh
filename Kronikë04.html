@@ -5,133 +5,137 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
      <title>Kronikë04</title>
-</head>
-<body>
-<style>
-    *{
-        padding: 0;
-        margin: 0;
-        text-decoration: none;
-        list-style: none;
-        box-sizing: border-box;
-    }
 
-    body {
-        font-family: 'Times New Roman', Times, serif;
-        display: flex;
-        flex-direction: column;
-    }
-
-    nav{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: black;
-        padding: 25px;
-        margin-top: 15px;
-    }
-    label.Emri {
-        color: white;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    nav ul {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    nav ul li a {
-        color:  white;
-        font-size: 17px;
-        padding: 18px 20px;
-    }
-
-    nav li a:hover {
-        background-color: white;
-        color: black;
-    }
-    .search-bar-container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-top: 10px;
-        padding-left: 25px;
-    }
-    .search-bar {
-        display: flex;
-        align-items: center;
-        width: 50%;
-    }
-    .search-bar input {
-        flex: 1;
-        height: 40px;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 20px;
-        box-sizing: border-box;
-        font-size: 14px;
-    }
-    .search-bar button {
-        background-color: white;
-        color: black;
-        height: 40px;
-        border: 2px solid black;
-        border-radius: 20px;
-        padding: 8px 12px;
-        cursor: pointer;
-        margin-left: 5px;
-    }
-    .login-button-container {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-        margin-right: 25px;
-    }
-
-    .login-button {
-        background-color: white;
-        color: black;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 20px;
-        cursor: pointer;
-        margin-right: 25px;
-    }
-
-    @media only screen and (min-width : 600px) {
-        nav {
-            flex-direction: row;
-            justify-content: space-between;
+     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+    
+        nav{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: black;
+            padding: 25px;
+            margin-top: 15px;
+            width: 100%;
         }
         label.Emri {
-            font-size: 35px;
-            margin-bottom: 0;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
+    
         nav ul {
-            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
-        
-    }
+    
+        nav ul li {
+            margin: 0 10px;
+        }
+    
+        nav ul li a {
+            color:  white;
+            font-size: 17px;
+            padding: 18px 20px;
+        }
+    
+        nav li a:hover {
+            background-color: white;
+            color: black;
+        }
+        .search-bar-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+            padding-left: 25px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 50%;
+        }
+        .search-bar input {
+            flex: 1;
+            height: 40px;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .search-bar button {
+            background-color: white;
+            color: black;
+            height: 40px;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .login-button-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 25px;
+        }
+    
+        .login-button {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+  
+        @media only screen and (min-width : 600px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            label.Emri {
+                font-size: 35px;
+                margin-bottom: 0;
+            }
+            nav ul {
+                margin-top: 0;
+            }
+            
+        }
+    
+        </style>
+</head>
 
-    </style>
+<body>
 
     <nav>
         <label class="Emri">Kronikë04</label>
         <ul>
-            <li><a href="#">Ballina</a></li>
-            <li><a href="#">Politikë</a></li>
-            <li><a href="#">Arsim</a></li>
-            <li><a href="#">Ekonomi</a></li>
-            <li><a href="#">Teknologji</a></li>
-            <li><a href="#">Sport</a></li>
-            <li><a href="#">Showbiz</a></li>
+            <li><a href="Ballina.html" onclick="showContent('Ballina')">Ballina</a></li>
+            <li><a href="#" onclick="showContent('Politikë')">Politikë</a></li>
+            <li><a href="#" onclick="showContent('Arsim')">Arsim</a></li>
+            <li><a href="#" onclick="showContent('Ekonomi')">Ekonomi</a></li>
+            <li><a href="#" onclick="showContent('Teknologji')" >Teknologji</a></li>
+            <li><a href="Sport.html" onclick="showContent('Sport')">Sport</a></li>
+            <li><a href="#" onclick="showContent('Showbiz')">Showbiz</a></li>
         </ul>
     </nav>
 
@@ -144,5 +148,17 @@
         <button class="login-button" onclick="location.href ='loginRegister.html'" >Kyçu / Regjistrohu </button>
         </div>
     </div>
+
+
+
+    
+    <script>
+        function showContent(category){
+            console.log(`show content for ${category}`)
+        }
+    </script>
+
+   
+
 </body>
 </html>
