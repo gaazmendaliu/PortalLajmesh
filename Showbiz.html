@@ -3,7 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Showbiz</title>
+
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .artikull{
+            background-color: white;
+            margin: 10px;
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: calc(30.33% - 15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .artikull img{
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            max-height: 150px;
+        }
+
+        .artikull h2{
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .artikull p{
+            flex-grow: 1;
+            line-height: 1.4;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Showbiz</h1>
@@ -16,7 +62,27 @@
             </div>
 
             <div class = "artikull">
-                
+                <img src="KimKardashian.jpg" alt ="phototwo">
+                <h2>Kim Kardashian nga Hulu në Netflix</h3>
+                <p>Netflix sapo bleu "The Fifth-Wheel", filmin komedi ku Kim do të jetë jo vetëm aktore, por edhe autore e regjisore.</p>   
+            </div>
+
+            <div class="artikull">
+                <img src="ZefDeda.jpg" alt="photothree">
+                <h2>Ndahet nga jeta Zef Deda</h4>
+                <p>"Charlie Chaplin" i Shqipërisë ka humbur jetën në moshën 73-vjeqare. Lajmin e ka bërë të ditur djali i tij, Juli</p>
+            </div>
+
+            <div class="artikull">
+                <img src="maneskin.jpg" alt="photofour">
+                <h2>Dolly Parton bashkëpunim me Måneskin</h2>
+                <p>Ikona e muzikës country, ka vendosur të lansojë versionin Rock 'n'Roll të këngës së saj më të suksesshme "Jolene", në bashkëpunim me rock-grupin fitues të Eurovision 2021 </p>
+            </div>
+
+            <div class="artikull">
+                <img src="dafina.jpg" alt="photofive">
+                <h2>Dafina Zeqiri po martohet</h2>
+                <p>Këngtarja e njohur është shumë aktive në broadcast channel-in e saj në Instagram, "Pra është zyrtare...Po martohem 2024" ka ndarë ajo.</p>
             </div>
         </main>
     </hr>
