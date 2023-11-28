@@ -21,7 +21,6 @@
             flex-direction: column;
             overflow-x: hidden;
         }
-    
         nav{
             display: flex;
             flex-direction: column;
@@ -31,6 +30,11 @@
             margin-top: 15px;
             width: 100%;
         }
+
+        .navbar{
+            position: fixed;
+        }
+
         label.Emri {
             color: white;
             font-size: 24px;
@@ -57,12 +61,14 @@
             background-color: white;
             color: black;
         }
+
+    
         .search-bar-container{
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 120px;
             padding-left: 25px;
         }
         .search-bar {
@@ -105,7 +111,7 @@
             cursor: pointer;
             margin-right: 25px;
         }
-  
+        
         @media only screen and (min-width : 600px) {
             nav {
                 flex-direction: row;
@@ -120,26 +126,23 @@
             }
             
         }
-    
         </style>
 </head>
 
 <body>
 
-
-    <nav>
+    <nav class="navbar">
         <label class="Emri">Kronikë04</label>
         <ul>
             <li><a href="Ballina.html" onclick="showContent('Ballina')">Ballina</a></li>
             <li><a href="#" onclick="showContent('Politikë')">Politikë</a></li>
-            <li><a href="#" onclick="showContent('Arsim')">Arsim</a></li>
+            <li><a href="Lifestyle.html" onclick="showContent('LifeStyle')">Lifestyle</a></li>
             <li><a href="#" onclick="showContent('Ekonomi')">Ekonomi</a></li>
             <li><a href="#" onclick="showContent('Teknologji')" >Teknologji</a></li>
             <li><a href="Sport.html" onclick="showContent('Sport')">Sport</a></li>
-            <li><a href="Showbiz.html" onclick="showContent('Showbiz')">Showbiz</a></li>
+            <li><a href="Showbiz.html" onclick="showContent('Showbiz')" >Showbiz</a></li>
         </ul>
     </nav>
-
     <div class="search-bar-container">
         <div class="search-bar">
             <input type="text" placeholder="Kërkoni...">
@@ -157,6 +160,12 @@
         function showContent(category){
             console.log(`show content for ${category}`)
         }
+
+        fetch('Nav.html')
+        .then(response => response.text())
+        .then(data =>{
+            document.getElementById('nav-ph').innerHTML = data;
+        });
 
     </script>
 
