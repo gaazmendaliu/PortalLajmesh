@@ -11,6 +11,7 @@
         h1 {
             border-bottom: 3px solid black;
             padding-bottom: 5px;
+            cursor: pointer;
         }
 
         body {
@@ -34,6 +35,7 @@
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
+            border :2px solid black;
         }
         .artikull img {
             max-width: 100%;
@@ -58,8 +60,7 @@
 
 <body>
 
-    <h1>Ekonomi</h1>
-    <hr>
+    <h1 onclick="goToMainPage()">Ekonomi</h1>
     
      <main>
 
@@ -107,8 +108,11 @@
     function showContent(category){
         console.log(`show content for ${category}`)
     }
+    function goToMainPage(){
 
-
+        console.log("Navigating to the main page");
+        window.location.href = 'Kronikë04.html';
+    }
 </script>
 
 </body>

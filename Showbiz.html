@@ -9,6 +9,7 @@
         h1 {
             border-bottom: 3px solid black;
             padding-bottom: 5px;
+            cursor: pointer;
         }
         body{
             font-family: 'Times New Roman', Times, serif;
@@ -33,6 +34,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border :2px solid black;
         }
 
         .artikull img{
@@ -56,8 +58,8 @@
     </style>
 </head>
 <body>
-    <h1>Showbiz</h1>
-    <hr>
+    <h1 onclick="goToMainPage()">Showbiz</h1>
+
         <main>
             <div class="artikull">
                 <img src="MatthewPerry.jpg" alt="photo1">
@@ -117,12 +119,14 @@
         </main>
     </hr>
 <script>
-    fetch('Nav.html')
-        .then(response => response.text())
-        .then(data =>{
-            document.getElementById('nav-ph').innerHTML = data;
-        });
-
+        function showContent(category){
+            console.log(`show content for ${category}`)
+    }
+        function goToMainPage(){
+            
+        console.log("Navigating to the main page");
+        window.location.href = 'Kronikë04.html';
+    }
         </script>
 </body>
 </html>
