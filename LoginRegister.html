@@ -117,66 +117,79 @@
             <label for="confirmPassword">Konfirmo fjalëkalimin:</label>
             <input type="password" id="confirmPassword" name="confirmPassword">
 
-            <button type="submit">Regjistrohu</button>
+            <button type="submit" onclick="validimi()">Regjistrohu</button>
         </form>
 
         <div class="toggle-link" onclick="toggleForms()">Nuk keni llogari? Regjistrohuni këtu!</div>
     </div>
 
     <script>
+        const form = document.getElementById('registerForm')
         let fnameRegex= /^[A-Z][a-zA-Z]{1,}$/;
         let lnameRegex = /^[A-Z][a-zA-Z]{1,}$/;
         let usernameRegex = /^[a-zA-Z]\w{2,9}$/;
-        let emailRegex = /^[a-zA-Z0-9] + @[a-zA-Z0-9.-] + \.[a-zA-Z]{2.4}$/;
-        let passwordRegex = /^(?=.[a-zA-Z])(?=.*d)[A-Za-z\d]{8,}$/;
+        let emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-        function validimi(){
-            let fnameInput = getElementById("firstName");
-            let lnameInput = getElementById("lastName");
-            let usernameInput = getElementById("registerUsername");
-            let emailInput = getElementById("email");
-            let passwordInput = getElementById("registerPassword");
+        function validimi(event){
+            event.preventDefault();
 
-            let fnameError=getElementById("fnameError");
-            let lnameError=getElementById("lnameError")
-            let usernameError=getElementById("usernamenameError");
-            let emailError=getElementById("emailError");
-            let passError=getElementById("passError");
+            let fnameInput = document.getElementById("firstName");
+            let lnameInput =document.getElementById("lastName");
+            let usernameInput = document.getElementById("registerUsername");
+            let emailInput = document.getElementById("email");
+            let passwordInput = document.getElementById("registerPassword");
+
+            let fnameError=document.getElementById("fnameError");
+            let lnameError=document.getElementById("lnameError")
+            let usernameError=document.getElementById("usernameError");
+            let emailError=document.getElementById("emailError");
+            let passError=document.getElementById("passError");
             
             
 
 
            fnameError.innerText = '';
            lnameError.innerText = '';
-           usernamenameError.innerText = '';
+           usernameError.innerText = '';
            emailError.innerText = '';
            passwordError.innerText = '';
 
            if(!fnameRegex.test(fnameInput.value)){
-            fnameError.innerText = 'Shkruani nje emer valid';
-            return;
+            fnameError.innerText='Shkruani nje emer valid';
+            return false;
            }
 
            if(!lnameRegex.test(lnameInput.value)){
-            lnameError.innerText = 'Shkruani nje mbiemer valid';
-            return;
+            lnameError.innerText'Shkruani nje mbiemer valid';
+            return false;
            }
 
            if(!usernameRegex.test(usernameInput.value)){
-            usernameError.innerText ='Shkruani nje username valid';
-            return;
+            usernameError.innerText='Shkruani nje username valid';
+            return false;
            }
 
-           if(!emailRegex.test(emailInput)){
-            emailError.innerText = 'Shkruani email valid';
-            return;
+           if(!emailRegex.test(emailInput.value)){
+            emailError = 'Shkruani nje email valid';
+            return false;
            }
 
            if(!passwordRegex.test(passwordInput.value)){
-            passError.innerText = 'Shkruani nje password valid';
-            return;
+            passError.innerText ='Shkruani nje password valid');
+            return false;
            }
+           
+           return true;
         }
+
+        form.addEventListener('submit', function(event){
+            if(!validimi(event)){
+                event.preventDefault();
+            }
+        });
+
+
         function toggleForms() {
             var loginForm = document.getElementById('loginForm');
             var registerForm = document.getElementById('registerForm');
@@ -192,6 +205,7 @@
                 toggleLink.style.display = 'none';
             }
  }
+
     </script>
 
 </body>

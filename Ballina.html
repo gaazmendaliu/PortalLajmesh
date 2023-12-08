@@ -4,8 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ballina</title>
+
+    <style>
+        h1 {
+            border-bottom: 3px solid black;
+            border-top: 3px solid black;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+
+        body {
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden; }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .artikull {
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) ;
+            width: calc(30.0% - 15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            border :2px solid black;
+        }
+        .artikull img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            max-height: 150px;
+        }
+        .artikull h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .artikull p {
+            flex-grow: 1;
+            line-height: 1.4;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
+    <h1 onclick="goToMainPage()">Ballina</h1>
+    
+    <main>
+
+        <div class="artikull">
+            <img src="kurti.jpg" alt="Foto1">
+            <h2>Kurti në Vienë</h2>
+            <p>Kryeministri i Kosovës, Albin Kurti ka vizituar Vienën për të marrë pjesë në ceremoninë hapëse të Forumit Ekonomik</p>
+        </div>
+
+        <div class="artikull">
+            <img src="israelhamas.jpg" alt="Foto1">
+            <h2>Vazhdon lufta Izrael - Hamas</h2>
+            <p>Izraeli thotë që as të premten nuk do të lirohen pengjet. Dokumentohen mbi 178 sulme në qendrat e shëndetësisë së Hamasit. </p>
+        </div>
+
+        <div class="artikull">
+            <img src="kurti.jpg" alt="Foto2">
+            <h2>Kurti në takim me Peach</h2>
+            <p>Kryeministri i Kosovës është takuar me të Dërguarin Special të Britanisë së Madhe për Ballkanin Perëndimor. Lord Stuart Peach, me të cilin kanë diskutuar për situatën e sigurisë në vend, si dhe për dialogun me Serbinë.</p>
+        </div>
+
+        <div class="artikull">
+            <img src="dafina.jpg" alt="photo6">
+            <h2>Dafina Zeqiri po martohet</h2>
+            <p>Këngtarja e njohur është shumë aktive në broadcast channel-in e saj në Instagram, "Pra është zyrtare...Po martohem 2024" ka ndarë ajo.</p>
+        </div>
+
+        <div class="artikull">
+            <img src="fc-ballkani-1.jpg" alt="Foto1">
+            <h2>Superliga</h2>
+            <p>Fc Ballkani marshon drejt titullit të tretë radhazi në stilin e Kampionit !!!!</p>
+        </div>
+
+        <div class="artikull">
+            <img src="detroit.png".jpg" alt="Foto1">
+            <h2>Teknologji e re në Detroit</h2>
+            <p>Është instaluar teknologji e poshtë rrugëve të Detroit. Mund të karikohen makina elektrike ndërkohë që vozitni.</p>
+        </div>
+
+        <div class="artikull">
+            <img src="twitch.png" alt="Foto2">
+            <h2>Twitch ndalon shërbimet në Kore të Jugut</h2>
+            <p>Twitch, platforma më e madhe e streaming të video-lojërave, ka deklaruar se do të ndalohen të gjitha shërbimet në Kore të Jugut, edhe pse ky vend 
+                ka një ndër tregjet më të mëdha botërore për PC gaming. Arsye janë tarifat e network, të cilat janë 10 herë më të larta se në vendet tjera.
+            </p>
+        </div>
+
+        <div class="artikull">
+            <img src="Hamas.jpg" alt="Foto2">
+            <h2>Lufta Izrael - Hamas</h2>
+            <p>Banka e Izraelit raporton, lufta e Hamasit i ka kushtuar Izraelit 53 milion dollarë</p>
+        </div>
+
+        <div class="artikull">
+            <img src="interview.jpg" alt="Foto6">
+            <h2>Ja si të përgatiteni për një intervistë pune</h2>
+            <p>Intervistat e punës mund të jenë pa dyshim stresuese. Sigurohuni që të jeni në formën tuaj më të mirë duke ndjekur këto këshilla.</p>
+        </div>
+
+    </main>
     
 </body>
 </html>
