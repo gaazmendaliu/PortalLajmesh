@@ -90,7 +90,7 @@
             <div class="error-message" id="logpassError"></div>
 
 
-            <button type="submit" onclick="validimiLog()">Kyçu</button>
+            <button type="submit" onclick="redirectToKronikë04()">Kyçu</button>
         </form>
 
 
@@ -129,6 +129,11 @@
     </div>
 
     <script>
+
+        function redirectToKronikë04(){
+            window.location.href = 'Kronikë04.html';
+        }
+
         const form = document.getElementById('registerForm');
         const formm = document.getElementById('loginForm');
 
@@ -158,6 +163,7 @@
             lognError.innerText = '';
             logpError.innerText = '';
 
+
             if(!lognameRegex.test(lognameInput.value)){
                 showAlert('Ndodhi nje gabim!Shkruani nje username valid.')
                  return false;
@@ -167,16 +173,10 @@
                 showAlert('Nodhi nje gabim!Shkruani nje password valid')
                 return false;
            }
-
-           window.location.href = 'Kronikë04.html';
-             return true;
         }
 
-        formm.addEventListener('submit', function(event){
-            if(!validimiLog()){
-                event.preventDefault();
-            }
-        });
+       
+    
         
 
         function validimiReg(){
