@@ -85,7 +85,7 @@
             <div class="error-message" id="lognameError"></div>
 
 
-            <label for="loginPassword" id="loginPassword">Fjalëkalimi:</label>
+            <label for="loginPassword">Fjalëkalimi:</label>
             <input type="password" id="loginPassword" name="loginPassword" required>
             <div class="error-message" id="logpassError"></div>
 
@@ -120,6 +120,7 @@
 
             <label for="confirmPassword">Konfirmo fjalëkalimin:</label>
             <input type="password" id="confirmPassword" name="confirmPassword">
+            <div class="error-message" id="confirmPassError"></div>
 
             <button type="submit" onclick="validimiReg()">Regjistrohu</button>
         </form>
@@ -141,12 +142,15 @@
         let emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
+        function showAlert(message){
+            alert(message);
+        }
 
-        function validimiLog(event){
-            event.preventDefault();
+        function validimiLog(){
+            
 
             let lognameInput = document.getElementById("loginUsername");
-            let logpassInput = document.getElementById("loginPassword");
+            let logpassInput = document.getElementById("loginPasswordInput");
 
             let lognError = document.getElementById("lognameError");
             let logpError = document.getElementById("logpassError");
@@ -155,12 +159,12 @@
             logpError.innerText = '';
 
             if(!lognameRegex.test(lognameInput.value)){
-                lognError.innerText='Shkruani nje username valid';
+                showAlert('Ndodhi nje gabim!Shkruani nje username valid.')
                  return false;
            }
 
            if(!logpassRegex.test(logpassInput.value)){
-                logpError.innerText ='Shkruani nje password valid';
+                showAlert('Nodhi nje gabim!Shkruani nje password valid')
                 return false;
            }
 
@@ -169,13 +173,13 @@
         }
 
         formm.addEventListener('submit', function(event){
-            if(!validimiLog(event)){
+            if(!validimiLog()){
                 event.preventDefault();
             }
         });
         
 
-        function validimiReg(event){
+        function validimiReg(){
             event.preventDefault();
 
             let fnameInput = document.getElementById("firstName");
@@ -183,9 +187,10 @@
             let usernameInput = document.getElementById("registerUsername");
             let emailInput = document.getElementById("email");
             let passwordInput = document.getElementById("registerPassword");
+            let confirmPasswordInput = document.getElementById("confirmPassword");
 
             let fnameError=document.getElementById("fnameError");
-            let lnameError=document.getElementById("lnameError")
+            let lnameError=document.getElementById("lnameError");
             let usernameError=document.getElementById("usernameError");
             let emailError=document.getElementById("emailError");
             let passError=document.getElementById("passError");
@@ -197,33 +202,38 @@
            passError.innerText = '';
 
            if(!fnameRegex.test(fnameInput.value)){
-            fnameError.innerText='Shkruani nje emer valid';
+            showAlert('Ndodhi nje gabim! Shkruani nje emer valid.')
             return false;
            }
 
            if(!lnameRegex.test(lnameInput.value)){
-            lnameError.innerText='Shkruani nje mbiemer valid';
+            showAlert('Ndodhi nje gabim! Shkruani nje mibemer valid.');
             return false;
            }
 
            if(!usernameRegex.test(usernameInput.value)){
-            usernameError.innerText='Shkruani nje username valid';
+            showAlert('Ndodhi nje gabim! Shkruani nje username valid.');
             return false;
            }
 
            if(!emailRegex.test(emailInput.value)){
-            emailError = 'Shkruani nje email valid';
+            showAlert('Ndodhi nje gabim! Shkruani nje email valid.');
             return false;
            }
 
            if(!passwordRegex.test(passwordInput.value)){
-            passError.innerText ='Shkruani nje password valid';
+            showAlert('Ndodhi nje gabim ! Shkruani nje password valid.');
             return false;
            }
 
-           toggleForms();
+           if(passwordInput.value !== confirmPasswordInput.value){
+            showAlert('Fjalekalinmet nuk perputhen. Provoni perseri.');
+            return false;
+           }
+
            
-           return true;
+           toggleForms();
+            return true;
         }
 
         form.addEventListener('submit', function(event){
@@ -249,11 +259,7 @@
             }
         }
 
-        function goToMainPage(){
-
-            console.log("Navigating to the main page");
-            window.location.href = 'Kronikë04.html';
-    }
+        
 
     </script>
 
