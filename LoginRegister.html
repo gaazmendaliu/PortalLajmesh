@@ -82,11 +82,15 @@
         <form id="loginForm">
             <label for="loginUsername">Username:</label>
             <input type="text" id="loginUsername" name="loginUsername" required>
+            <div class="error-message" id="lognameError"></div>
+
 
             <label for="loginPassword" id="loginPassword">Fjalëkalimi:</label>
             <input type="password" id="loginPassword" name="loginPassword" required>
+            <div class="error-message" id="logpassError"></div>
 
-            <button type="submit">Kyçu</button>
+
+            <button type="submit" onclick="validimiLog()">Kyçu</button>
         </form>
 
 
@@ -117,21 +121,61 @@
             <label for="confirmPassword">Konfirmo fjalëkalimin:</label>
             <input type="password" id="confirmPassword" name="confirmPassword">
 
-            <button type="submit" onclick="validimi()">Regjistrohu</button>
+            <button type="submit" onclick="validimiReg()">Regjistrohu</button>
         </form>
 
         <div class="toggle-link" onclick="toggleForms()">Nuk keni llogari? Regjistrohuni këtu!</div>
     </div>
 
     <script>
-        const form = document.getElementById('registerForm')
+        const form = document.getElementById('registerForm');
+        const formm = document.getElementById('loginForm');
+
+        let lognameRegex= /^[a-zA-Z]\w{2,9}$/;
+        let logpassRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+
         let fnameRegex= /^[A-Z][a-zA-Z]{1,}$/;
         let lnameRegex = /^[A-Z][a-zA-Z]{1,}$/;
         let usernameRegex = /^[a-zA-Z]\w{2,9}$/;
         let emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-        function validimi(event){
+
+        function validimiLog(event){
+            event.preventDefault();
+
+            let lognameInput = document.getElementById("loginUsername");
+            let logpassInput = document.getElementById("loginPassword");
+
+            let lognError = document.getElementById("lognameError");
+            let logpError = document.getElementById("logpassError");
+
+            lognError.innerText = '';
+            logpError.innerText = '';
+
+            if(!lognameRegex.test(lognameInput.value)){
+                lognError.innerText='Shkruani nje username valid';
+                 return false;
+           }
+
+           if(!logpassRegex.test(logpassInput.value)){
+                logpError.innerText ='Shkruani nje password valid';
+                return false;
+           }
+
+           window.location.href = 'Kronikë04.html';
+             return true;
+        }
+
+        formm.addEventListener('submit', function(event){
+            if(!validimiLog(event)){
+                event.preventDefault();
+            }
+        });
+        
+
+        function validimiReg(event){
             event.preventDefault();
 
             let fnameInput = document.getElementById("firstName");
@@ -146,14 +190,11 @@
             let emailError=document.getElementById("emailError");
             let passError=document.getElementById("passError");
             
-            
-
-
            fnameError.innerText = '';
            lnameError.innerText = '';
            usernameError.innerText = '';
            emailError.innerText = '';
-           passwordError.innerText = '';
+           passError.innerText = '';
 
            if(!fnameRegex.test(fnameInput.value)){
             fnameError.innerText='Shkruani nje emer valid';
@@ -161,7 +202,7 @@
            }
 
            if(!lnameRegex.test(lnameInput.value)){
-            lnameError.innerText'Shkruani nje mbiemer valid';
+            lnameError.innerText='Shkruani nje mbiemer valid';
             return false;
            }
 
@@ -179,12 +220,14 @@
             passError.innerText ='Shkruani nje password valid';
             return false;
            }
+
+           toggleForms();
            
            return true;
         }
 
         form.addEventListener('submit', function(event){
-            if(!validimi(event)){
+            if(!validimiReg(event)){
                 event.preventDefault();
             }
         });
@@ -204,7 +247,13 @@
                 registerForm.style.display = 'block';
                 toggleLink.style.display = 'none';
             }
- }
+        }
+
+        function goToMainPage(){
+
+            console.log("Navigating to the main page");
+            window.location.href = 'Kronikë04.html';
+    }
 
     </script>
 
