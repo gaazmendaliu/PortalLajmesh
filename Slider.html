@@ -6,7 +6,22 @@
     <title>Slider</title>
 </head>
 <style>
-   #Kontenti{
+    #Content{
+        display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    width: 500px;
+    border: 2px solid black;
+    padding:10px;   
+    }
+
+    #quotes{
+        text-align: center;
+        margin-top: 10px;  
+    }
+   #Kontenti1{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,7 +32,7 @@
     padding:10px;
    }
 
-   #Kontenti img{
+   #Kontenti1 img{
     max-width: 700px;
     height: 400px;
    }
@@ -32,8 +47,14 @@
    }
 </style>
 <body>
+
+    <div id="Content">
+        <h1>Thënje</h1>
+        <div id="quotes"></div>
+    </div>
+    <button onclick="changeQuote">Tjetër</button>
     
-    <div id="Kontenti">
+    <div id="Kontenti1">
         <header>
             <h2>Rekomandime për libra</h2>
             <img id="slideshow"/>
@@ -43,6 +64,24 @@
     <button onclick="changeImg()">Tjetër</button>
 
     <script>
+        let j=0;
+        let quoteArray=['Dobësia jonë më e madhe është dorëzimi.Mënyra më e sigurt për të pasur sukses ësht të provosh vetëm edhe një herë - Thomas Edison ',
+                        'Sukses është kalimi nga dështimi në dështim pa humbur entuziazmin - Winston Churchill',
+                        'Sado e vështirë të duket jeta, gjithmonë ka diçka që mund ta bësh dhe të kesh sukses - Stephen Hawking',
+                        'Arritjet e mëdha lindin nga sakrifica të mëdha , dhe nuk janë kurrë rezultat i të qenurit vetjak - Napoelon Hill',
+                        'Jeta është 10% çka ndodh, dhe 90% se si ti reagon - Charles Swindoll',
+                        'Një njeri i dobët ka dyshime para se të marrë vendime, një njeri i fortë ka dyshime pasi ka marrë vendimin - Karl Kraus'];
+
+        function changeQuote(){
+            document.getElementById('quotes').innerText=quoteArray[i];
+            if(i < quoteArray.length-1){
+                i++
+            }else{
+                i=0
+            }
+        } 
+        document.addEventListener('DOMContentLoaded',changeQuote);               
+
         let i=0;
         let imgArray=['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg','foto5.jpg','foto6.jpg','foto7.jpg','foto8.jpg','foto9.jpg','foto10.jpg'];
         let textArray=['The Hobit JJR Tolkien', 'Konti i Monte Cristo - Alexandre Dumas','I Huaji Albert Camus',
