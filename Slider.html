@@ -6,101 +6,182 @@
     <title>Slider</title>
 </head>
 <style>
+
+    body {
+        background-color: #DEE6F2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+    }
+
+    #ThënjeSection , 
     #Content{
         display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Times New Roman', Times, serif;
-    width: 500px;
-    border: 2px solid black;
-    padding:10px;   
+        flex-direction: column;
+        align-items: center;
+        width: 500px;
+        border: 2px solid black;
+        padding:10px;
+        margin-top: 20px; 
     }
+
 
     #quotes{
         text-align: center;
         margin-top: 10px;  
     }
+
+    #quoteControls, 
+    #bookControls {
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #quoteControls button ,
+    #bookControls button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    #quoteControls button.left ,
+    #bookControls button.left {
+        order: 1;
+    }
+
+    #quoteControls button.right ,
+    #bookControls button.right {
+        order: 3;
+    }
+
    #Kontenti1{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Times New Roman', Times, serif;
-    width: 500px;
-    border: 2px solid black;
-    padding:10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 500px;
+        border: 2px solid black;
+        padding:10px;
+        margin-top: 20px;
    }
 
    #Kontenti1 img{
-    max-width: 700px;
-    height: 400px;
+    width: 250px;
+    height: 300px;
    }
 
    #textbox{
-    text-align: center;
-    margin-top: 10px;
+        text-align: center;
+        margin-top: 10px;
    }
 
-   button:hover{
-    border: 2px;
+   @media screen and (max-width: 600px){
+    #ThënjeSection, #Content {
+        width: 90%;
+    }
    }
+
 </style>
 <body>
 
-    <div id="Content">
-        <h1>Thënje</h1>
+    <div id="ThënjeSection">
+        <h1>Thënjet e ditës</h1>
         <div id="quotes"></div>
+        <div id="quoteControls">
+            <button onclick="prevQuote()">&#60;</button>
+            <button onclick="nextQuote()">&#62;</button>
     </div>
-    <button onclick="changeQuote()">Tjetër</button>
-    
-    <div id="Kontenti1">
+</div>
+
+    <div id="Content">
         <header>
             <h2>Rekomandime për libra</h2>
             <img id="slideshow"/>
             <div id="textbox"></div>
         </header>
+        <div id="bookControls">
+            <button onclick="prevBook()">&#60;</button>
+            <button onclick="nextBook()">&#62;</button>
+        </div>
     </div>
-    <button onclick="changeImg()">Tjetër</button>
 
     <script>
-        let j=0;
-        let quoteArray=['Dobësia jonë më e madhe është dorëzimi.Mënyra më e sigurt për të pasur sukses ësht të provosh vetëm edhe një herë - Thomas Edison ',
-                        'Sukses është kalimi nga dështimi në dështim pa humbur entuziazmin - Winston Churchill',
-                        'Sado e vështirë të duket jeta, gjithmonë ka diçka që mund ta bësh dhe të kesh sukses - Stephen Hawking',
-                        'Arritjet e mëdha lindin nga sakrifica të mëdha , dhe nuk janë kurrë rezultat i të qenurit vetjak - Napoelon Hill',
-                        'Jeta është 10% çka ndodh, dhe 90% se si ti reagon - Charles Swindoll',
-                        'Një njeri i dobët ka dyshime para se të marrë vendime, një njeri i fortë ka dyshime pasi ka marrë vendimin - Karl Kraus'];
+        let quoteIndex = 0;
+        const quoteArray =[
+            'Dobësia jonë më e madhe është dorëzimi.Mënyra më e sigurt për të pasur sukses ësht të provosh vetëm edhe një herë - Thomas Edison ',
+            'Sukses është kalimi nga dështimi në dështim pa humbur entuziazmin - Winston Churchill',
+            'Sado e vështirë të duket jeta, gjithmonë ka diçka që mund ta bësh dhe të kesh sukses - Stephen Hawking',
+            'Arritjet e mëdha lindin nga sakrifica të mëdha , dhe nuk janë kurrë rezultat i të qenurit vetjak - Napoelon Hill',
+            'Jeta është 10% çka ndodh, dhe 90% se si ti reagon - Charles Swindoll',
+            'Një njeri i dobët ka dyshime para se të marrë vendime, një njeri i fortë ka dyshime pasi ka marrë vendimin - Karl Kraus'
+        ];
 
-        function changeQuote(){
-            document.getElementById('quotes').innerText=quoteArray[j];
-            if(j < quoteArray.length-1){
-                j++
-            }else{
-                j=0
-            }
-        } 
-        document.addEventListener('DOMContentLoaded',changeQuote);               
+        let bookIndex =0;
+        const imgArray = [
+            'foto1.jpg',
+            'foto2.jpg',
+            'foto3.jpg',
+            'foto4.jpg',
+            'foto5.jpg',
+            'foto6.jpg',
+            'foto7.jpg',
+            'foto8.jpg',
+            'foto9.jpg',
+            'foto10.jpg'
+        ];
+        const textArray = [
+            'The Hobit JJR Tolkien',
+             'Konti i Monte Cristo - Alexandre Dumas',
+             'I Huaji Albert Camus',
+             'Letra Milenës Franz Kafka',
+             'Gra të vogla Louisa M. Alcott',
+             'Ana Karenina Leo Tolstoy',
+             'Të dy vdesin në fund Adam Silvera',
+             'Hajdutja e Librave Markus Zusak',
+             'Dy kullat JRR Tolkien',
+             'Rreth botës për 80 ditë Jules Verne'
+        ];
 
-        let i=0;
-        let imgArray=['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg','foto5.jpg','foto6.jpg','foto7.jpg','foto8.jpg','foto9.jpg','foto10.jpg'];
-        let textArray=['The Hobit JJR Tolkien', 'Konti i Monte Cristo - Alexandre Dumas','I Huaji Albert Camus',
-                        'Letra Milenës Franz Kafka','Gra të vogla Louisa M. Alcott','Ana Karenina Leo Tolstoy',
-                        'Të dy vdesin në fund Adam Silvera','Hajdutja e Librave Markus Zusak','Dy kullat JRR Tolkien',
-                        'Rreth botës për 80 ditë Jules Verne'];
+        function changeQuote() {
+            document.getElementById('quotes').innerText = quoteArray[quoteIndex];
+        }
 
-        function changeImg(){
-            document.getElementById('slideshow').src=imgArray[i];
-            document.getElementById('textbox').innerText = textArray[i];
-
-            if(i<imgArray.length-1){
-                i++
-            }else{
-                i=0;
-            }
-        }   
+        function nextQuote() {
+            quoteIndex = (quoteIndex + 1) % quoteArray.length;
+            changeQuote();
+        }
         
-    document.addEventListener('DOMContentLoaded',changeImg);
+        function prevQuote() {
+            quoteIndex = (quoteIndex - 1 + quoteArray.length) % quoteArray.length;
+            changeQuote();
+        }
+
+        function changeBook() {
+            document.getElementById('slideshow').src = imgArray[bookIndex];
+            document.getElementById('textbox').innerText = textArray[bookIndex];
+        }
+
+        function nextBook() {
+            bookIndex = (bookIndex + 1) % imgArray.length;
+            changeBook();
+        }
+
+        function prevBook() {
+            bookIndex = (bookIndex - 1 + imgArray.length) % imgArray.length;
+            changeBook();
+        }
+
+        document.addEventListener('DOMContentLoaded' , () =>{
+            changeQuote();
+            changeBook();
+        });
+       
     </script>
 </body>
 </html>
