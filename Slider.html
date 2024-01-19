@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+</head>
+<style>
+   #Kontenti{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    width: 500px;
+    border: 2px solid black;
+    padding:10px;
+   }
+
+   #Kontenti img{
+    max-width: 700px;
+    height: 400px;
+   }
+
+   #textbox{
+    text-align: center;
+    margin-top: 10px;
+   }
+
+   button:hover{
+    border: 2px;
+   }
+</style>
+<body>
+    
+    <div id="Kontenti">
+        <header>
+            <h2>Rekomandime për libra</h2>
+            <img id="slideshow"/>
+            <div id="textbox"></div>
+        </header>
+    </div>
+    <button onclick="changeImg()">Tjetër</button>
+
+    <script>
+        let i=0;
+        let imgArray=['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg','foto5.jpg','foto6.jpg','foto7.jpg','foto8.jpg','foto9.jpg','foto10.jpg'];
+        let textArray=['The Hobit JJR Tolkien', 'Konti i Monte Cristo - Alexandre Dumas','I Huaji Albert Camus',
+                        'Letra Milenës Franz Kafka','Gra të vogla Louisa M. Alcott','Ana Karenina Leo Tolstoy',
+                        'Të dy vdesin në fund Adam Silvera','Hajdutja e Librave Markus Zusak','Dy kullat JRR Tolkien',
+                        'Rreth botës për 80 ditë Jules Verne'];
+
+        function changeImg(){
+            document.getElementById('slideshow').src=imgArray[i];
+            document.getElementById('textbox').innerText = textArray[i];
+
+            if(i<imgArray.length-1){
+                i++
+            }else{
+                i=0;
+            }
+        }   
+        
+    document.addEventListener('DOMContentLoaded',changeImg);
+    </script>
+</body>
+</html>
