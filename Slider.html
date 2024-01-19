@@ -52,7 +52,7 @@
         <h1>Thënje</h1>
         <div id="quotes"></div>
     </div>
-    <button onclick="changeQuote">Tjetër</button>
+    <button onclick="changeQuote()">Tjetër</button>
     
     <div id="Kontenti1">
         <header>
@@ -73,11 +73,11 @@
                         'Një njeri i dobët ka dyshime para se të marrë vendime, një njeri i fortë ka dyshime pasi ka marrë vendimin - Karl Kraus'];
 
         function changeQuote(){
-            document.getElementById('quotes').innerText=quoteArray[i];
-            if(i < quoteArray.length-1){
-                i++
+            document.getElementById('quotes').innerText=quoteArray[j];
+            if(j < quoteArray.length-1){
+                j++
             }else{
-                i=0
+                j=0
             }
         } 
         document.addEventListener('DOMContentLoaded',changeQuote);               
