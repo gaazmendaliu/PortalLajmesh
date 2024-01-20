@@ -94,7 +94,7 @@
         </form>
 
 
-        <form id="registerForm">
+        <form id="registerForm" action="reg.php" method="post">
             <label for="firstName">Emri:</label>
             <input type="text" id="firstName" name="firstName" required>
             <div class="error-message" id="fnameError"></div>
@@ -122,7 +122,7 @@
             <input type="password" id="confirmPassword" name="confirmPassword">
             <div class="error-message" id="confirmPassError"></div>
 
-            <button type="submit" onclick="validimiReg()">Regjistrohu</button>
+            <button type="submit">Regjistrohu</button>
         </form>
 
         <div class="toggle-link" onclick="toggleForms()">Nuk keni llogari? Regjistrohuni këtu!</div>
@@ -134,28 +134,16 @@
             window.location.href = 'Kronikë04.html';
         }
 
-        const form = document.getElementById('registerForm');
         const formm = document.getElementById('loginForm');
 
         let lognameRegex= /^[a-zA-Z]\w{2,9}$/;
         let logpassRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-
-        let fnameRegex= /^[A-Z][a-zA-Z]{1,}$/;
-        let lnameRegex = /^[A-Z][a-zA-Z]{1,}$/;
-        let usernameRegex = /^[a-zA-Z]\w{2,9}$/;
-        let emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-        function showAlert(message){
-            alert(message);
-        }
-
         function validimiLog(){
             
 
             let lognameInput = document.getElementById("loginUsername");
-            let logpassInput = document.getElementById("loginPasswordInput");
+            let logpassInput = document.getElementById("loginPassword");
 
             let lognError = document.getElementById("lognameError");
             let logpError = document.getElementById("logpassError");
@@ -175,91 +163,18 @@
            }
         }
 
-       
-    
-        
-
-        function validimiReg(){
-            event.preventDefault();
-
-            let fnameInput = document.getElementById("firstName");
-            let lnameInput =document.getElementById("lastName");
-            let usernameInput = document.getElementById("registerUsername");
-            let emailInput = document.getElementById("email");
-            let passwordInput = document.getElementById("registerPassword");
-            let confirmPasswordInput = document.getElementById("confirmPassword");
-
-            let fnameError=document.getElementById("fnameError");
-            let lnameError=document.getElementById("lnameError");
-            let usernameError=document.getElementById("usernameError");
-            let emailError=document.getElementById("emailError");
-            let passError=document.getElementById("passError");
-            
-           fnameError.innerText = '';
-           lnameError.innerText = '';
-           usernameError.innerText = '';
-           emailError.innerText = '';
-           passError.innerText = '';
-
-           if(!fnameRegex.test(fnameInput.value)){
-            showAlert('Ndodhi nje gabim! Shkruani nje emer valid.')
-            return false;
-           }
-
-           if(!lnameRegex.test(lnameInput.value)){
-            showAlert('Ndodhi nje gabim! Shkruani nje mibemer valid.');
-            return false;
-           }
-
-           if(!usernameRegex.test(usernameInput.value)){
-            showAlert('Ndodhi nje gabim! Shkruani nje username valid.');
-            return false;
-           }
-
-           if(!emailRegex.test(emailInput.value)){
-            showAlert('Ndodhi nje gabim! Shkruani nje email valid.');
-            return false;
-           }
-
-           if(!passwordRegex.test(passwordInput.value)){
-            showAlert('Ndodhi nje gabim ! Shkruani nje password valid.');
-            return false;
-           }
-
-           if(passwordInput.value !== confirmPasswordInput.value){
-            showAlert('Fjalekalinmet nuk perputhen. Provoni perseri.');
-            return false;
-           }
-
-           
-           toggleForms();
-            return true;
-        }
-
-        form.addEventListener('submit', function(event){
-            if(!validimiReg(event)){
-                event.preventDefault();
-            }
-        });
-
-
         function toggleForms() {
             var loginForm = document.getElementById('loginForm');
-            var registerForm = document.getElementById('registerForm');
             var toggleLink = document.querySelector('.toggle-link');
 
             if (loginForm.style.display === 'none') {
                 loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
                 toggleLink.style.display = 'block';
             } else {
                 loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
                 toggleLink.style.display = 'none';
             }
-        }
-
-        
+        } 
 
     </script>
 

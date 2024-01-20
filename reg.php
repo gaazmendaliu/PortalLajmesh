@@ -6,7 +6,7 @@ if(isset($_POST["submit"])){
     $username=$_POST["registerUsername"];
     $email = $_POST["email"];
     $birthday = $_POST["birthday"];
-    $password = passowrd_hash($_POST["registerPassword"],PASSWORD_DEFAULT);
+    $password = password_hash($_POST["registerPassword"],PASSWORD_DEFAULT);
     $confirmpass = $_POST["confirmPassword"];
 
 
@@ -26,7 +26,7 @@ if(isset($_POST["submit"])){
     }
 
 
-    require_once "database.php"
+    require_once "database.php";
     $sql="select * from users where E-mail='$email'";
     $result = mysqli_query($conn,$sql);
     $rowCount = mysqli_num_rows($result);
@@ -42,12 +42,12 @@ if(isset($_POST["submit"])){
         }
     }
     else{
-        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values (???)";
-        $stat = mysqli_stat_init($conn);
-        $prepareStat = mysqli_stat_prepare($stat,$sql);
-        if($prepareStat){
-            mysqli_stat_bind_param($stat,"sss",$fname,$lname,$username,$email,$birthday,$password,$confirmpass);
-            mysqli_stat_execute($stat);
+        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values ($fname,$lname,$username,$email,$birthday,$password)";
+        $stmt = mysqli_stat_init($conn);
+        $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
+        if($prepareStm t){
+            mysqli_stat_bind_param($stm t,"sss",$fname,$lname,$username,$email,$birthday,$password,$confirmpass);
+            mysqli_stat_execute($stmt);
             echo"<div class='alert alert-success'>Jeni regjistruar.</div>";
         }
         else{
@@ -57,4 +57,4 @@ if(isset($_POST["submit"])){
     
 
 }
-?>
+?> 
