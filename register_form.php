@@ -1,6 +1,12 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors' , 1);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 @include 'database.php';
+
+
 
 if(isset($_POST['submitRegister'])){
 
@@ -8,9 +14,9 @@ if(isset($_POST['submitRegister'])){
     $lname=mysqli_real_escape_string($conn,$_POST[lastName]);
     $username=mysqli_real_escape_string($conn,$_POST[registerUsername]);
     $email=mysqli_real_escape_string($conn,$_POST[email]);
-    $bday=$_POST([birthday]);
+    $bday=$_POST['birthday'];
     $pass = md5($_POST['registerPassword']);
-    $cpass=md5($_POST([confirmPassword]));
+    $cpass=md5($_POST['confirmPassword']);
     $user_type=$_POST['user_type'];
 
     $select = "SELECT * FROM users WHERE Username = '$username' && Fjalëkalimi = '$pass' ";
@@ -24,8 +30,11 @@ if(isset($_POST['submitRegister'])){
             $error[] = 'Fjalekalimet nuk pershtaten';
         }else{
             $insert = "INSERT INTO users (Emri,Mbiemri,Username,E-mail,Ditëlindja,Fjalëkalimi,User_type) values ('$fname','$lname','$username','$email','$bday','$pass','$user_type')";
-            mysqli_query($conn,$insert);
-            header('location: login_form.php');
+            if (mysqli_query($conn, $insert)){
+                echo 'Jeni regjistruar me sukses !';
+            } else {
+                echo 'Error :' .mysqli_error($conn);
+            }
         }
     }
 };
@@ -113,7 +122,7 @@ body {
       <?php
         if(isset($error)){
             foreach($error as $error){
-                echo 'span class ="error_msg">'.$error.'</span>';
+                echo '<span class ="error_msg">'.$error.'</span>';
             }
         }
 

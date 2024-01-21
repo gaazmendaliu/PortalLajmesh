@@ -12,7 +12,7 @@ if(isset($_POST['submitRegister'])){
     $email=mysqli_real_escape_string($conn,$_POST[email]);
     $bday=$_POST([birthday]);
     $pass = md5($_POST['registerPassword']);
-    $cpass=md5($_POST([confirmPassword]));
+    $cpass=md5($_POST(['confirmPassword']));
     $user_type=$_POST['user_type'];
 
     $select = "SELECT * FROM users WHERE Username = '$username' && Fjalëkalimi = '$pass' ";

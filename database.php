@@ -2,12 +2,11 @@
 
     $hostName="localhost";
     $dbUser="root";
-    $dbPassword="";
     $dbName="LoginRegForm";
 
-   $conn = mysqli_connect($hostName,$dbUser,$dbPassword,$dbName);
+   $conn = mysqli_connect($hostName,$dbUser,'',$dbName);
 
    if(!$conn){
-    die("Dicka nuk shkoi mire");
+    die("Dicka nuk shkoi mire" . mysqli_connect_error());
    }
 ?>
