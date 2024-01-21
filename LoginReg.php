@@ -165,6 +165,9 @@ if(isset($_POST["submitRegister"])){
     require_once "database.php";
     $sql="select * from users where E-mail='$email'";
     $result = mysqli_query($conn,$sql);
+    if(!$result){
+        die('Error: '+mysqli_error($conn));
+    }
     $rowCount = mysqli_num_rows($result);
     
     if($rowCount>0){
@@ -178,7 +181,7 @@ if(isset($_POST["submitRegister"])){
         }
     }
     else{
-        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values ('$fname',' $lname',' $username', '$email', '$birthday', '$password')";
+        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values (?,?,?,?,?,?)";
         $stmt = mysqli_stmt_init($conn);
 
         $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
@@ -190,8 +193,7 @@ if(isset($_POST["submitRegister"])){
         }else{
             die("Dicka nuk shkoi mire");
         }
-    }
-    
+    } 
 
 }
 

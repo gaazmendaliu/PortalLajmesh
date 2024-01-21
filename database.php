@@ -1,6 +1,6 @@
 <?php
 
-    $hostname="localhost";
+    $hostName="localhost";
     $dbUser="root";
     $dbPassword="";
     $dbName="LoginRegForm";
