@@ -178,14 +178,14 @@ if(isset($_POST["submitRegister"])){
         }
     }
     else{
-        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values (?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_stat_init($conn);
+        $sql = "insert into users (Emri,Mbiemri,Username, E-mail,Ditëlindja,Fjalëkalimi) values ('$fname',' $lname',' $username', '$email', '$birthday', '$password')";
+        $stmt = mysqli_stmt_init($conn);
 
         $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
 
         if($prepareStmt){
-            mysqli_stat_bind_param($stmt,"ssssss",$fname,$lname,$username,$email,$birthday,$password);
-            mysqli_stat_execute($stmt);
+            mysqli_stmt_bind_param($stmt,"ssssss",$fname,$lname,$username,$email,$birthday,$password);
+            mysqli_stmt_execute($stmt);
             echo"<div class='alert alert-success'>Jeni regjistruar.</div>";
         }else{
             die("Dicka nuk shkoi mire");
