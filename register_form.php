@@ -10,16 +10,16 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 if(isset($_POST['submitRegister'])){
 
-    $fname=mysqli_real_escape_string($conn,$_POST[firstName]);
-    $lname=mysqli_real_escape_string($conn,$_POST[lastName]);
-    $username=mysqli_real_escape_string($conn,$_POST[registerUsername]);
-    $email=mysqli_real_escape_string($conn,$_POST[email]);
-    $bday=$_POST['birthday'];
+    $fname=mysqli_real_escape_string($conn,$_POST['firstName']);
+    $lname=mysqli_real_escape_string($conn,$_POST['lastName']);
+    $username=mysqli_real_escape_string($conn,$_POST['registerUsername']);
+    $email=mysqli_real_escape_string($conn,$_POST['email']);
+    $bday = isset($_POST['ditelindja']) ? date('Y-m-d', strtotime(str_replace('.', '-', $_POST['ditelindja']))) : '';
     $pass = md5($_POST['registerPassword']);
     $cpass=md5($_POST['confirmPassword']);
-    $user_type=$_POST['user_type'];
+    $user_type = isset($_POST['user_type']) ? $_POST['user_type'] : '';
 
-    $select = "SELECT * FROM users WHERE Username = '$username' && Fjalëkalimi = '$pass' ";
+    $select = "SELECT * FROM users WHERE Username = '$username' && Fjalekalimi = '$pass' ";
     $result=mysqli_query($conn,$select);
 
     if(mysqli_num_rows($result)>0){
@@ -29,11 +29,12 @@ if(isset($_POST['submitRegister'])){
         if($pass != $cpass){
             $error[] = 'Fjalekalimet nuk pershtaten';
         }else{
-            $insert = "INSERT INTO users (Emri,Mbiemri,Username,E-mail,Ditëlindja,Fjalëkalimi,User_type) values ('$fname','$lname','$username','$email','$bday','$pass','$user_type')";
-            if (mysqli_query($conn, $insert)){
-                echo 'Jeni regjistruar me sukses !';
+            $insert = "INSERT INTO users (Emri,Mbiemri,Username,Email,Ditelindja,Fjalekalimi,User_type) values ('$fname','$lname','$username','$email','$bday','$pass','$user_type')";
+            
+            if(mysqli_query($conn, $insert)){
+                echo 'Jeni regjistruar me sukses!';
             } else {
-                echo 'Error :' .mysqli_error($conn);
+                echo 'Error' . mysqli_error($conn);
             }
         }
     }
@@ -99,9 +100,6 @@ body {
             background-color: black;
         }
 
-        #registerForm{
-            display: none;
-        }
         
         #registerForm label ,
         #registerForm input {
@@ -118,7 +116,7 @@ body {
         }
     </style>
     <div class="container" id="registerForm">
-    <form action = "" method="post">
+    <form action = "register_form.php" method="post" accept-charset="UTF-8">
       <?php
         if(isset($error)){
             foreach($error as $error){
@@ -140,14 +138,21 @@ body {
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
+            <label for="ditelidnja">Ditelindja</label>
+            <input type="date" id="ditelindja" name="ditelindja" required>
+
             <label for="registerPassword">Fjalëkalimi:</label>
             <input type="password" id="registerPassword" name="registerPassword" required>
 
             <label for="confirmPassword">Konfirmo fjalëkalimin:</label>
             <input type="password" id="confirmPassword" name="confirmPassword">
 
-            <option value = "user">user</option>
-            <option value="admin">admin</option>
+            <label>Lloji i perdoruesit</label>
+            <input type="radio" id="user" name="user_type" value="user" checked>
+            <label for="user">Perdorues</label>
+
+            <input type="radio" id="admin" name="user_type" value="admin">
+            <label for="admin">Admin</label>
 
             <button type="submit" name="submitRegister">Regjistrohu</button>
             <p>Keni llogari? <a href="login_form.php">Kycu këtu</a></p>
