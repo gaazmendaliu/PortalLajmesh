@@ -23,7 +23,7 @@ if(isset($_POST['submitRegister'])){
 
         if($row['user_type']=='admin'){
             $_SESSION['admin_name']=$row['username'];
-            header('location:admin_dashboard.php');
+            header('location:admin.php');
         }
         else if($row['user_type']=='user'){
             $_SESSION['user_name']=$row['username'];
