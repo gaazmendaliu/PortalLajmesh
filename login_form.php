@@ -1,40 +1,49 @@
 <?php
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 @include 'database.php';
 
 session_start();
 
-if(isset($_POST['submitRegister'])){
+echo 'Form submitted';
 
-    $fname=mysqli_real_escape_string($conn,$_POST[firstName]);
-    $lname=mysqli_real_escape_string($conn,$_POST[lastName]);
-    $username=mysqli_real_escape_string($conn,$_POST[registerUsername]);
-    $email=mysqli_real_escape_string($conn,$_POST[email]);
-    $bday=$_POST([birthday]);
-    $pass = md5($_POST['registerPassword']);
-    $cpass=md5($_POST(['confirmPassword']));
-    $user_type=$_POST['user_type'];
+if(isset($_POST['submit']) && $_POST['submit'] === 'submit'){
 
-    $select = "SELECT * FROM users WHERE Username = '$username' && Fjalëkalimi = '$pass' ";
-    $result=mysqli_query($conn,$select);
+    $username = mysqli_real_escape_string($conn, $_POST['loginUsername']);
+    $pass = md5($_POST['loginPassword']);
 
-    if(mysqli_num_rows($result)>0){
-        $row=mysqli_fetch_array($result);
+    $select = "SELECT * FROM users WHERE Username = '$username' AND Fjalekalimi = '$pass' " ;
+    $result = mysqli_query($conn, $select);
 
-        if($row['user_type']=='admin'){
-            $_SESSION['admin_name']=$row['username'];
-            header('location:admin.php');
-        }
-        else if($row['user_type']=='user'){
-            $_SESSION['user_name']=$row['username'];
-            header('location:user.php');
-        }
-        
-        }else{
-            $error[]= 'Username ose password nuk eshte i sakte';
-        }
+
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
     
-};
+            if (isset($row['user_type']) && !empty($row['user_type'])) {
+                if ($row['user_type'] == 'admin') {
+                   $_SESSION['admin_name'] = $row['username'];
+                    header('location: admin.php');
+                    exit();
+                } elseif ($row['user_type'] == 'perdorues'){
+                   $_SESSION['user_name'] = $row['username'];
+                    header('location: user.php');
+                    exit();
+                }
+            } else {
+                $error[] = '<span class="error_msg">Ju lutem zgjidhni nje nga llojet e perdoruesit!</span>';
+            }
+        } else {
+            $error[] = ' Username ose fjalekalimi eshte i pasakte !';
+        }
+    } else {
+        die('Error: ' . mysqli_error($conn));
+    }
+ }
+    
 ?>
 
 <!DOCTYPE html>
@@ -108,11 +117,11 @@ body {
 <body>
 
 <div class="container" id="loginform">
-<form action="LoginReg.php" method="post">
+<form action="" method="post">
 <?php
      if(isset($error)){
          foreach($error as $error){
-            echo 'span class ="error_msg">'.$error.'</span>';
+            echo '<span class ="error_msg">'.$error.'</span>';
          }
     }
 
@@ -123,7 +132,14 @@ body {
             <label for="loginPassword">Fjalëkalimi:</label>
             <input type="password" id="loginPassword" name="loginPassword" required>
 
-            <button type="submit" name="submit">Kyçu</button>
+            <label>Lloji i përdoruesit:</label>
+            <input type="radio" id="admin" name="lloji_perdoruesit" value="admin">
+            <label for="admin">Admin</label>
+
+            <input type="radio" id="perdorues" name="lloji_perdoruesit" value="perdorues">
+            <label for="perdorues">Perdorues</label>
+
+            <button type="submit" name="submit" value="submit">Kyçu</button>
             <p>Nuk keni llogari? <a href="register_form.php">Regjistrohu këtu</a></p>
             
         </form>
