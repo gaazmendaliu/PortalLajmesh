@@ -1,11 +1,9 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
 
 @include 'database.php';
 
-session_start();
 
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');

@@ -1,49 +1,36 @@
 <?php
 
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-@include 'database.php';
-
 session_start();
 
-echo 'Form submitted';
+require_once 'database.php'
 
-if(isset($_POST['submit']) && $_POST['submit'] === 'submit'){
+if(@SERVER['REQUEST_METHOD']='POST'){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query = "SELECT * FROM users where Username = '$username' and Fjalekalimi = '$password'";
+    $result = mysqi_query($conn, $query);
 
-    $username = mysqli_real_escape_string($conn, $_POST['loginUsername']);
-    $pass = md5($_POST['loginPassword']);
-
-    $select = "SELECT * FROM users WHERE Username = '$username' AND Fjalekalimi = '$pass' " ;
-    $result = mysqli_query($conn, $select);
-
-
-    if ($result) {
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result);
-    
-            if (isset($row['user_type']) && !empty($row['user_type'])) {
-                if ($row['user_type'] == 'admin') {
-                   $_SESSION['admin_name'] = $row['username'];
-                    header('location: admin.php');
-                    exit();
-                } elseif ($row['user_type'] == 'perdorues'){
-                   $_SESSION['user_name'] = $row['username'];
-                    header('location: user.php');
-                    exit();
-                }
-            } else {
-                $error[] = '<span class="error_msg">Ju lutem zgjidhni nje nga llojet e perdoruesit!</span>';
+    if(mysqli_num_rows($result)>0){
+        $row=mysqli_fetch_array($result);
+        if(isset($row['user_type']) && !empty($row['user_type'])){
+            if($row['user_type']=='admin'){
+                $_SESSION['admin_name']=$row['username'];
+                header('location: admin.php');
+                exit();
+            }elseif($row['user_type']=='user'){
+                $_SESSION['admin_name']=$row['username'];
+                header('location: user.php');
+                exit();
             }
-        } else {
-            $error[] = ' Username ose fjalekalimi eshte i pasakte !';
+        }else{
+            $error[]='<span class="error_msg">Zgjedhni nje lloj te perdoruesit!</span>';
+
         }
-    } else {
-        die('Error: ' . mysqli_error($conn));
-    }
- }
-    
+       
+    }else{
+        $error[]='Username ose fjalekalim i gabuar' ;
+     }
+}
 ?>
 
 <!DOCTYPE html>
