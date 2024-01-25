@@ -105,6 +105,10 @@
 
     
         }
+        .delete-form{
+
+            
+        }
         .delete-button{
 
 

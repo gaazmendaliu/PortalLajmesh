@@ -155,6 +155,19 @@
 
 
         }
+
+        .delete-form{
+
+            
+        }
+        .delete-button{
+
+
+        }
+        .delete-button:hover{
+
+
+        }
         footer {
             display: flex;
             justify-content: space-between;
@@ -229,6 +242,11 @@
                 echo "<p>".$row['Permbajtja']."</p>";
                 echo "<p>Kategoria: ".$row['Kategoria']."</p>";
                 echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
+
+                echo"<form class='delete-form' action='fshi_artikull.php' method='post'>";
+                echo"<input type='hidden' name='article_id' value='".$row['ID']."'>";
+                echo"<input class='delete-button' type='submit' value='Fshi'>";
+                echo "</form>";
                 echo "<hr>";
         }
     }else{

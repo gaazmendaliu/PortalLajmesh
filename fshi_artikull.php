@@ -27,6 +27,4 @@ if(isset($_GET['ID'])){
     header('location: admin.php');
     exit;
 }
-
-
 ?>
