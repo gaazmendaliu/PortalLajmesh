@@ -3,13 +3,7 @@
 @include 'database.php';
 
 
-$sql = "SELECT * FROM Artikulli";
-
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,6 +81,38 @@ $sql = "SELECT * FROM Artikulli";
             padding: 10px;
             text-align: left;
          }
+         .article-display{
+
+
+        }
+
+        .article-display h2{
+
+
+        }
+
+        .article-display p{
+
+
+        }
+
+        .article-display img{
+
+
+        }
+
+        .article-display hr{
+
+    
+        }
+        .delete-button{
+
+
+        }
+        .delete-button:hover{
+
+
+        }
     </style>
 
 </head>
@@ -110,15 +136,35 @@ $sql = "SELECT * FROM Artikulli";
     </form>
 
 
-    <?php while($row=$result->fetch_assoc()):   ?>
+    <div class="article-display">
+        <h2> Artikujt e fundit</h2>
+        <?php
+        
+        require_once 'database.php';
+        $sql = "SELECT * FROM Artikulli";
+        $result = $conn->query($sql);
 
-        <tr>
-            <td><?php echo $row['title'];?></td>
-            <td><?php echo $row['content'];?></td>
-            <td><?php echo $row['category'];?></td>
-            <td><a href="fshi_artikull.php?id=<?php echo $row['ID']; ?>">Fshi</a></td>
-         </tr>    
-    <?php endwhile; ?>    
+        if($result->num_rows>0){
+            while($row = $result->fetch_assoc()){
+                echo "<h2>".$row['Titulli']."</h2>";
+                echo "<p>".$row['Permbajtja']."</p>";
+                echo "<p>Kategoria: ".$row['Kategoria']."</p>";
+                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
+
+                echo "<form action='fshi_artikull.php' method='post'>";
+                echo "<input type='hidden' name='article_id' value = '".$row['ID']."'>";
+                echo "input type='submit' class'delete-button' value='Fshi'>";
+                echo"</form>";
+
+                echo "<hr>";
+        }
+    }else{
+        echo "Nuk ka artikuj";
+    }
+    $conn->close();
+        
+        ?>
+       </div>    
     
 </body>
 </html>

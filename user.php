@@ -1,5 +1,6 @@
-
-
+<?php
+@include 'database.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,6 +130,31 @@
             }
             
         }
+
+        .article-display{
+
+
+        }
+
+        .article-display h2{
+
+
+        }
+
+        .article-display p{
+
+
+        }
+
+        .article-display img{
+
+
+        }
+
+        .article-display hr{
+
+
+        }
         footer {
             display: flex;
             justify-content: space-between;
@@ -188,6 +214,30 @@
         <button class="login-button" onclick="location.href ='login_form.php'" >Kyçu / Regjistrohu </button>
         </div>
     </div>
+
+    <div class="article-display">
+        <h2> Artikujt e fundit</h2>
+        <?php
+        
+        require_once 'database.php';
+        $sql = "SELECT * FROM Artikulli";
+        $result = $conn->query($sql);
+
+        if($result->num_rows>0){
+            while($row = $result->fetch_assoc()){
+                echo "<h2>".$row['Titulli']."</h2>";
+                echo "<p>".$row['Permbajtja']."</p>";
+                echo "<p>Kategoria: ".$row['Kategoria']."</p>";
+                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
+                echo "<hr>";
+        }
+    }else{
+        echo "Nuk ka artikuj";
+    }
+    $conn->close();
+        
+        ?>
+       </div> 
 
     <footer>
         <div class="rreth-nesh">
