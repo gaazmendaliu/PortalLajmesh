@@ -1,37 +1,4 @@
-<?php
 
-session_start();
-
-require_once 'database.php'
-
-if(@SERVER['REQUEST_METHOD']='POST'){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $query = "SELECT * FROM users where Username = '$username' and Fjalekalimi = '$password'";
-    $result = mysqi_query($conn, $query);
-
-    if(mysqli_num_rows($result)>0){
-        $row=mysqli_fetch_array($result);
-        if(isset($row['user_type']) && !empty($row['user_type'])){
-            if($row['user_type']=='admin'){
-                $_SESSION['admin_name']=$row['username'];
-                header('location: admin.php');
-                exit();
-            }elseif($row['user_type']=='user'){
-                $_SESSION['admin_name']=$row['username'];
-                header('location: user.php');
-                exit();
-            }
-        }else{
-            $error[]='<span class="error_msg">Zgjedhni nje lloj te perdoruesit!</span>';
-
-        }
-       
-    }else{
-        $error[]='Username ose fjalekalim i gabuar' ;
-     }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">

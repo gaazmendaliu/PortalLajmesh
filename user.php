@@ -1,14 +1,4 @@
-<?php
 
-session_start();
-
-@include 'database.php';
-
-
-if(!isset($_SESSION['user_name'])){
-    header('location:login_form.php');
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">

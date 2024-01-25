@@ -1,14 +1,15 @@
 <?php
 
-session_start();
-
 @include 'database.php';
 
-if(!isset($_SESSION['admin_name'])){
-    header('location:login_form.php');
-}
+
+$sql = "SELECT * FROM Artikulli";
+
+
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,80 @@ if(!isset($_SESSION['admin_name'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        label {
+
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            min-width: 600px;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"]{
+            cursor: pointer;
+        }
+
+        input[type="submit"]{
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+         table, th, td {
+            border: 1px solid #ddd;
+         }
+
+         th, td {
+            padding: 10px;
+            text-align: left;
+         }
+    </style>
+
 </head>
+
 <body>
 
     <form action="shto_artikull.php" method ="post" enctype="multipart/form-data">
@@ -35,7 +109,6 @@ if(!isset($_SESSION['admin_name'])){
         <input type="submit" value = "Shto">
     </form>
 
-    <a href="admin.php">Kthehu te Admin</a>
 
     <?php while($row=$result->fetch_assoc()):   ?>
 
