@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
         $sql= "INSERT INTO Artikulli(Titulli, Permbajtja ,Kategoria ,Foto) VALUES(?, ?, ?, ?)";
         $stmt= $conn->prepare($sql);
-        $stmt->bind_param("ssss",$title,$content,$category,$_FILES['images']['name']);
+        $stmt->bind_param("ssss",$title,$content,$category,$_FILES['image']['name']);
 
         if($stmt->execute()){
             header('location: admin.php');

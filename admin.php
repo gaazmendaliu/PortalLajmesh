@@ -59,6 +59,7 @@
             border-radius: 4px;
             padding: 10px;
             cursor: pointer;
+        
         }
 
         a {
@@ -81,42 +82,43 @@
             padding: 10px;
             text-align: left;
          }
-         .article-display{
 
+         .artikull-container{
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+         }
 
+        .artikull-container h2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .article-display h2{
-
-
+        .artikull-container img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            max-height: 150px;
         }
 
-        .article-display p{
-
-
+        .artikull-container p {
+            line-height: 1.4;
+            text-align: center;
         }
 
-        .article-display img{
+       
 
+        
 
-        }
-
-        .article-display hr{
-
-    
-        }
-        .delete-form{
+       
 
             
-        }
-        .delete-button{
-
-
-        }
-        .delete-button:hover{
-
-
-        }
     </style>
 
 </head>
@@ -140,9 +142,8 @@
     </form>
 
 
-    <div class="article-display">
-        <h2> Artikujt e fundit</h2>
-        <?php
+
+    <?php
         
         require_once 'database.php';
         $sql = "SELECT * FROM Artikulli";
@@ -150,17 +151,18 @@
 
         if($result->num_rows>0){
             while($row = $result->fetch_assoc()){
+                echo '<div class="artikull-container">';
                 echo "<h2>".$row['Titulli']."</h2>";
+                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
                 echo "<p>".$row['Permbajtja']."</p>";
                 echo "<p>Kategoria: ".$row['Kategoria']."</p>";
-                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
 
                 echo "<form action='fshi_artikull.php' method='post'>";
                 echo "<input type='hidden' name='article_id' value = '".$row['ID']."'>";
-                echo "input type='submit' class'delete-button' value='Fshi'>";
+                echo "<input type='submit' class='delete-button' value='Fshi'>";
                 echo"</form>";
 
-                echo "<hr>";
+                echo  "</div>" ;
         }
     }else{
         echo "Nuk ka artikuj";
@@ -168,7 +170,7 @@
     $conn->close();
         
         ?>
-       </div>    
+         
     
 </body>
 </html>

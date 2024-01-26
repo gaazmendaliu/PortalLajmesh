@@ -1,30 +1,42 @@
 <?php
-
 include 'database.php';
-session_start();
 
-if(!isset($_SESSION['admin_name'])){
-    header('location: login_form.php');
-    exit();
-}
 
-if(isset($_GET['ID'])){
-    $artikulliID = $_GET['ID'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(isset($_POST['article_id'])){
+        $article_id = $_POST['article_id'];
 
-    $sql="Delete FROM Artikulli where ID = '$artikulliID'";
-    $stmt=$conn->prepare($sql);
-    $stmt->bind_param("i",$artikulliID);
+        $sql = " DELETE FROM Artikulli WHERE ID = $article_id";
+        if ($conn->query($sql) === TRUE) {
+            echo "Artikulli u fshi me sukses.";
+        } else {
+            echo "Error: " .$sql . "<br>" . $conn->error;
+        }
 
-    if($stmt->execute()){
-        header('location: admin.php');
+        header("Location: admin.php");
         exit();
-    }else{
->        echo "Error ".$stmt->error;
     }
-
-    $stmt->close();
-}else{
-    header('location: admin.php');
-    exit;
 }
+    
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fshi Artikull</title>
+
+
+    <style>
+
+   
+    
+
+    
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
