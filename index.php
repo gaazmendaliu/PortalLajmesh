@@ -216,7 +216,8 @@
     </nav>
     <div class="search-bar-container">
         <div class="search-bar">
-            <input type="text" placeholder="Kërkoni...">
+            <form action="search.php" method="GET">
+            <input type="text" name="search" placeholder="Kërkoni...">
             <button type="button">Kërko</button>
         </div>
         <div class="login-button-container">
