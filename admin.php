@@ -1,8 +1,5 @@
 <?php
-
 @include 'database.php';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -111,14 +108,7 @@
             line-height: 1.4;
             text-align: center;
         }
-
-       
-
-        
-
-       
-
-            
+     
     </style>
 
 </head>

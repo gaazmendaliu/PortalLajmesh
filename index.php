@@ -131,43 +131,39 @@
             
         }
 
-        .article-display{
-
-
-        }
-
-        .article-display h2{
-
-
-        }
-
-        .article-display p{
-
+        .artikull-container{
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            text-align: center;
 
         }
 
-        .article-display img{
-
-
-        }
-
-        .article-display hr{
-
+        .artikull-container h2{
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
 
         }
 
-        .delete-form{
-
-            
-        }
-        .delete-button{
-
-
-        }
-        .delete-button:hover{
-
+        .artikull-container img{
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            max-height: 150px;
 
         }
+
+        .artikull-container p{
+            line-height: 1.4;
+            text-align: center:
+
+        }
+
         footer {
             display: flex;
             justify-content: space-between;
@@ -209,13 +205,13 @@
 <nav class="navbar">
         <label class="Emri">Kronikë04</label>
         <ul>
-            <li><a href="Politikë.html" onclick="showContent('Politikë')">Politikë</a></li>
-            <li><a href="Lifestyle.html" onclick="showContent('LifeStyle')">Lifestyle</a></li>
-            <li><a href="Ekonomi.html" onclick="showContent('Ekonomi')">Ekonomi</a></li>
-            <li><a href="Teknologji.html" onclick="showContent('Teknologji')" >Teknologji</a></li>
-            <li><a href="Sport.html" onclick="showContent('Sport')">Sport</a></li>
-            <li><a href="Showbiz.html" onclick="showContent('Showbiz')" >Showbiz</a></li>
-            <li><a href="Slider.html" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
+            <li><a href="Politike.php" onclick="showContent('Politikë')">Politikë</a></li>
+            <li><a href="Lifestyle.php" onclick="showContent('LifeStyle')">Lifestyle</a></li>
+            <li><a href="Ekonomi.php" onclick="showContent('Ekonomi')">Ekonomi</a></li>
+            <li><a href="Teknologji.php" onclick="showContent('Teknologji')" >Teknologji</a></li>
+            <li><a href="Sport.php" onclick="showContent('Sport')">Sport</a></li>
+            <li><a href="Showbiz.php" onclick="showContent('Showbiz')" >Showbiz</a></li>
+            <li><a href="Slider.php" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
         </ul>
     </nav>
     <div class="search-bar-container">
@@ -228,8 +224,7 @@
         </div>
     </div>
 
-    <div class="article-display">
-        <h2> Artikujt e fundit</h2>
+    
         <?php
         
         require_once 'database.php';
@@ -238,16 +233,18 @@
 
         if($result->num_rows>0){
             while($row = $result->fetch_assoc()){
+                echo '<div class="artikull-container">';
                 echo "<h2>".$row['Titulli']."</h2>";
+                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
                 echo "<p>".$row['Permbajtja']."</p>";
                 echo "<p>Kategoria: ".$row['Kategoria']."</p>";
-                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
+                
 
                 echo"<form class='delete-form' action='fshi_artikull.php' method='post'>";
                 echo"<input type='hidden' name='article_id' value='".$row['ID']."'>";
                 echo"<input class='delete-button' type='submit' value='Fshi'>";
                 echo "</form>";
-                echo "<hr>";
+                echo "</div>";
         }
     }else{
         echo "Nuk ka artikuj";
