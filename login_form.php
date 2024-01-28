@@ -1,4 +1,31 @@
+<?php
 
+require_once 'database.php';
+
+$errors = array();
+
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    $username = $_POST['loginUsername'];
+    $password= $_POST['loginPassword'];
+    $userType = $_POST['lloji_perdoruesit'];
+
+    $query = "SELECT * FROM users where Username='$username' and Fjalekalimi='$password' AND user_type ='$userType'";
+    $result = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($result)>0){
+        echo '<script>';
+        if($userType=='admin'){
+            echo 'window.location.href="admin.php";';
+        } elseif($userType == 'perdorues'){
+            echo 'window.location.href="user.php";';
+        }
+        echo '</script>';
+    }else{
+        $errors[]='Username ose fjalekalimi i gabuar';
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +100,7 @@ body {
 <div class="container" id="loginform">
 <form action="" method="post">
 <?php
-     if(isset($error)){
+     if(!empty($error)){
          foreach($error as $error){
             echo '<span class ="error_msg">'.$error.'</span>';
          }
@@ -97,7 +124,17 @@ body {
             <p>Nuk keni llogari? <a href="register_form.php">Regjistrohu këtu</a></p>
             
         </form>
-</div>   
+</div> 
+
+<script>
+    document.querySelector('form').addEventListener('submit',function (e){
+        var userType = document.querySelector('input[name="lloji_perdoruesit"]/;checked');
+        if(!userType){
+            alert('Ju lutem zgjedhni nje lloj te perdoruesit');
+            e.preventDefault();
+        }
+    });
+    </script>
     
 </body>
 </html>

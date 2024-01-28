@@ -241,14 +241,14 @@
             <li><a href="Teknologji.php" onclick="showContent('Teknologji')" >Teknologji</a></li>
             <li><a href="Sport.php" onclick="showContent('Sport')">Sport</a></li>
             <li><a href="Showbiz.php" onclick="showContent('Showbiz')" >Showbiz</a></li>
-            <li><a href="Slider.php" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
+            <li><a href="Slider.html" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
         </ul>
     </nav>
     <div class="search-bar-container">
         <div class="search-bar">
             <form action="search.php" method="GET">
             <input type="text" name="search" placeholder="Kërkoni...">
-            <button type="button">Kërko</button>
+            <button type="submit">Kërko</button>
         </div>
         <div class="login-button-container">
         <button class="login-button" onclick="location.href ='login_form.php'" >Kyçu / Regjistrohu </button>

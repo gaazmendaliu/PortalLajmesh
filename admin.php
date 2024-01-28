@@ -147,6 +147,8 @@
                 echo "<p>".$row['Permbajtja']."</p>";
                 echo "<p>Kategoria: ".$row['Kategoria']."</p>";
 
+                echo "<a href='edit.php?article_id=".$row['ID']." '>Ndrysho</a>";
+
                 echo "<form action='fshi_artikull.php' method='post'>";
                 echo "<input type='hidden' name='article_id' value = '".$row['ID']."'>";
                 echo "<input type='submit' class='delete-button' value='Fshi'>";

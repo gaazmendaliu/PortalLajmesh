@@ -48,13 +48,13 @@
 
 if(isset($_GET['search'])){
     $searchTerm=$_GET['search'];
-    $searchTerm= mysqli_real_escapr_string($conn, $searchTerm);
+    $searchTerm= mysqli_real_escape_string($conn, $searchTerm);
 
     $sql="SELECT * FROM Artikulli WHERE Titulli like '%$searchTerm%' or Permbajtja like '%$searchTerm%' or Kategoria like '%$searchTerm%'";
     $result=$conn -> query($sql);
 
     if($result->num_rows >0){
-        while($row->fetch_assoc()){
+        while($row->$result->fetch_assoc()){
             echo '<div class="artikull-container">';
             echo "<h2>".$row['Titulli']."</h2>";
             echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
