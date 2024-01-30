@@ -28,13 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Fshi Artikull</title>
 
 
-    <style>
-
-   
-    
-
-    
-    </style>
 </head>
 <body>
     

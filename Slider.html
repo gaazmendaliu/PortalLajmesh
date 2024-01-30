@@ -8,12 +8,13 @@
 <style>
 
     body {
-        background-color: #DEE6F2;
+        background-color: #ffffff;
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-family: 'Times New Roman', Times, serif;
-        margin: 0;
     }
 
     #ThënjeSection , 
@@ -25,6 +26,23 @@
         border: 2px solid black;
         padding:10px;
         margin-top: 20px; 
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+        border: 2px solid  #000000;
+        padding: 20px;
+        margin-top: 20px;
+        background-color: #ffffff;
+    }
+
+    #ThënjeSection,
+    #Content {
+        margin-top: 20px;
     }
 
 
@@ -42,38 +60,32 @@
         margin-top: 10px;
     }
 
-    #quoteControls button ,
-    #bookControls button {
+    button {
         background-color: transparent;
         border: none;
         padding: 0;
         cursor: pointer;
         font-size: 24px;
+        color: #000000;
     }
-
-    #quoteControls button.left ,
-    #bookControls button.left {
-        order: 1;
-    }
-
-    #quoteControls button.right ,
-    #bookControls button.right {
-        order: 3;
-    }
-
-   #Kontenti1{
+    
+    #Kontenti1{
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 500px;
-        border: 2px solid black;
-        padding:10px;
+        width: 100%;
+        max-width: 500px;
+        border: 2px solid #000000;
+        padding:20px;
         margin-top: 20px;
+        background-color: #ffffff;
    }
 
    #Kontenti1 img{
-    width: 250px;
-    height: 300px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-top: 10px;
    }
 
    #textbox{
@@ -90,27 +102,28 @@
 </style>
 <body>
 
-    <div id="ThënjeSection">
+    <div class="container" id="ThënjeSection">
         <h1>Thënjet e ditës</h1>
         <div id="quotes"></div>
         <div id="quoteControls">
             <button onclick="prevQuote()">&#60;</button>
             <button onclick="nextQuote()">&#62;</button>
+        </div>
     </div>
-</div>
 
-    <div id="Content">
+    <div class="container" id="content">
         <header>
             <h2>Rekomandime për libra</h2>
-            <img id="slideshow"/>
+            <img id="slideshow" />
             <div id="textbox"></div>
         </header>
+
         <div id="bookControls">
             <button onclick="prevBook()">&#60;</button>
             <button onclick="nextBook()">&#62;</button>
         </div>
     </div>
-
+   
     <script>
         let quoteIndex = 0;
         const quoteArray =[

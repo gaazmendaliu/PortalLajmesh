@@ -33,8 +33,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
+    <style>
 body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -94,14 +93,16 @@ body {
         }
 
     </style>
+</head>
+
 
 <body>
 
 <div class="container" id="loginform">
 <form action="" method="post">
 <?php
-     if(!empty($error)){
-         foreach($error as $error){
+     if(!empty($errors)){
+         foreach($errors as $error){
             echo '<span class ="error_msg">'.$error.'</span>';
          }
     }
@@ -128,7 +129,7 @@ body {
 
 <script>
     document.querySelector('form').addEventListener('submit',function (e){
-        var userType = document.querySelector('input[name="lloji_perdoruesit"]/;checked');
+        var userType = document.querySelector('input[name="lloji_perdoruesit"]:checked');
         if(!userType){
             alert('Ju lutem zgjedhni nje lloj te perdoruesit');
             e.preventDefault();

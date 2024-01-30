@@ -34,7 +34,7 @@
 
         .artikull-container p{
             line-height: 1.4;
-            text-align: center:
+            text-align: center;
 
         }
 
@@ -54,7 +54,7 @@ if(isset($_GET['search'])){
     $result=$conn -> query($sql);
 
     if($result->num_rows >0){
-        while($row->$result->fetch_assoc()){
+        while($row = $result->fetch_assoc()){
             echo '<div class="artikull-container">';
             echo "<h2>".$row['Titulli']."</h2>";
             echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";

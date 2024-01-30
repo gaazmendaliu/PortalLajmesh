@@ -25,6 +25,7 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            position: relative;
         }
 
         label {
@@ -49,23 +50,23 @@
             cursor: pointer;
         }
 
-        input[type="submit"]{
+        input[type="submit"],
+        a.edit-button ,
+        input.delete-button {
             background-color: black;
             color: #fff;
             border: none;
             border-radius: 4px;
             padding: 10px;
             cursor: pointer;
+            display: inline-block;
+            width: calc(50% - 5px);
+            box-sizing: border-box;
+            margin-right: 5px;
         
         }
 
-        a {
-            color: black;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
+    
         table {
             width: 100%;
             border-collapse: collapse;
@@ -108,6 +109,27 @@
             line-height: 1.4;
             text-align: center;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .button-container a.edit-button,
+        .button-container form.delete-button input.delete-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            width: calc(50% - 5px);
+            box-sizing:border-box;
+            margin-right: 5px;
+        }
      
     </style>
 
@@ -115,6 +137,7 @@
 
 <body>
 
+        
     <form action="shto_artikull.php" method ="post" enctype="multipart/form-data">
         <label for ="title">Titulli</label>
         <input type="text" id="title" name="title" required><br>
@@ -132,6 +155,7 @@
     </form>
 
 
+    
 
     <?php
         
@@ -147,12 +171,15 @@
                 echo "<p>".$row['Permbajtja']."</p>";
                 echo "<p>Kategoria: ".$row['Kategoria']."</p>";
 
-                echo "<a href='edit.php?article_id=".$row['ID']." '>Ndrysho</a>";
+                echo "<div class='button-container'>";
+                echo "<a class='edit-button' href='edit.php?article_id=".$row['ID']." '>Ndrysho</a>";
 
                 echo "<form action='fshi_artikull.php' method='post'>";
                 echo "<input type='hidden' name='article_id' value = '".$row['ID']."'>";
                 echo "<input type='submit' class='delete-button' value='Fshi'>";
                 echo"</form>";
+               
+                echo "</div>";
 
                 echo  "</div>" ;
         }
