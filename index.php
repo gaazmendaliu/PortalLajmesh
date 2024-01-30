@@ -241,7 +241,7 @@
             <li><a href="Teknologji.php" onclick="showContent('Teknologji')" >Teknologji</a></li>
             <li><a href="Sport.php" onclick="showContent('Sport')">Sport</a></li>
             <li><a href="Showbiz.php" onclick="showContent('Showbiz')" >Showbiz</a></li>
-            <li><a href="Slider.html" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
+            <li><a href="Slider.php" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
         </ul>
     </nav>
     <div class="search-bar-container">

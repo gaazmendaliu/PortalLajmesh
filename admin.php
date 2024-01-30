@@ -137,25 +137,15 @@
 
 <body>
 
-        
-    <form action="shto_artikull.php" method ="post" enctype="multipart/form-data">
-        <label for ="title">Titulli</label>
-        <input type="text" id="title" name="title" required><br>
+    <div class="shtoartikuj">
+        <button class="shto-artikuj" onclick="location.href ='shto_artikuj.php'" >Shto Artikuj</button>
+    </div>
 
-        <label for="image">Ngarko foton</label>
-        <input type="file" id="image" name="image" accept="image/*"><br>
-
-        <label for="content">Permbajtja:</label>
-        <textarea id="content" name="content" required></textarea><br>
-
-        <label for="category">Kategoria</label>
-        <input type="text" id="category" name="category" required><br>
-
-        <input type="submit" value = "Shto">
-    </form>
+    <div class="editslider">
+        <button class="edit-slider" onclick="location.href ='edit_slider.php'" >Kyçu / Regjistrohu </button>
+    </div>
 
 
-    
 
     <?php
         
