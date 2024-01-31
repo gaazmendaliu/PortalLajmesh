@@ -1,0 +1,115 @@
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin-title {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 100px;
+        }
+
+        .admin-title h1 {
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .shto-artikuj,
+        .edit-slider {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            display: inline-block;
+            width: 600px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .delete-button ,
+        .edit-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            width: 48%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .delete-button {
+            float: right;
+            margin-left:4%;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            min-width: 600px;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+         .artikull-container{
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+         }
+
+        .artikull-container h2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .artikull-container img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            max-height: 150px;
+        }
+
+        .artikull-container p {
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        
+        
+     

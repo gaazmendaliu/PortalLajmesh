@@ -1,10 +1,10 @@
 <?php
-    @include 'database.php';
+    require_once 'database.php';
 
     if(isset($_GET['article_id'])){
         $article_id=$_GET['article_id'];
 
-        $sql="SELECT * FROM Artikulli WHERE ID = $article_id";
+        $sql="SELECT * FROM Artikulli WHERE ID = ?";
         $stmt=$conn->prepare($sql);
         $stmt->bind_param("i",$article_id);
         $stmt->execute();
@@ -28,6 +28,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ndrysho</title>
+    <link rel="stylesheet" type="text/css" href="edit.css">
 </head>
 <body>
     <form action="" method="post" enctype="multipart/form-data">
@@ -50,20 +51,20 @@
 
 <?php
 
-require_once 'database.php';
-
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $article_id = $_POST['article_id'];
     $title=$_POST['title'];
     $content=$_POST['content'];
     $category=$_POST['category'];
 
-    $sql="UPDATE Artikulli SET Titulli='$title', Permbajtja='$content', Kategoria='$category' WHERE ID=$article_id";
+    $sql="UPDATE Artikulli SET Titulli=?, Permbajtja=?, Kategoria=? WHERE ID=?";
+    $stmt=$conn->prepare($sql);
+    $stmt->bind_param("sssi" , $title, $content, $category, $article_id);
 
     if($stmt->execute()){
         echo "Artikulli u ndryshua me sukses";
     }else{
-        echo "Gabim gjate ndryshimit te artikullit: ".$conn->error;
+        echo "Gabim gjate ndryshimit te artikullit: ".$stmt->error;
     }
 }
 
