@@ -4,13 +4,13 @@
 if($_SERVER["REQUEST_METHOD"]==="POST"){
     if(isset($_POST["addQuote"])){
         $newQuote = $_POST["newQuote"];
-        $sql = "INSERT INTO Slider(Thenja) VALUES ('$newQuote')";
+        $sql = "INSERT INTO Slider (Thenja) VALUES ('$newQuote')";
         $conn->query($sql);
     }
     elseif(isset($_POST["addBook"])){
         $newImage = $_FILES["newImage"]["name"];
         $newText=$_POST["newText"];
-        $sql="INSERT INTO Slider (Kopertina,TitulliAutori) values ('$newImage','$newText')";
+        $sql="INSERT INTO Slider (Kopertina, TitulliAutori) values ('$newImage','$newText')";
         $conn->query($sql);
     }
 }
@@ -56,7 +56,7 @@ if($result->num_rows>0){
     <form method="post" action="" enctype="multipart/form-data">
         <label for="newImage">Kopertina e re</label>
         <input type="file" name="newImage" required>
-        <label for="text" name="newText">Titulli dhe autori</label>
+        <label for="newText">Titulli dhe autori</label>
         <input type="text" name="newText" required>
         <button type="submit" name="addBook">Shto</button>
     </form> 

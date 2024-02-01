@@ -22,7 +22,7 @@ include 'header.php';
 
     <div class="button-container">
         <button class="shto-artikuj" onclick="location.href ='shto_artikull.php'" >Shto Artikuj</button>
-        <button class="edit-slider" onclick="location.href ='edit_slider.php'" >edito slider </button>
+        <button class="edit-slider" onclick="location.href ='edit_slider.php'" >Shto slider </button>
     </div>
 
 

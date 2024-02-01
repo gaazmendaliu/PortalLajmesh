@@ -12,24 +12,39 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $password= md5($_POST['loginPassword']);
     $userType = $_POST['lloji_perdoruesit'];
 
-    $query = "SELECT * FROM users where Username='$username' and Fjalekalimi='$password' AND user_type ='$userType'";
+    $query = "SELECT * FROM users where Username='$username' and Fjalekalimi='$password' AND User_type ='$userType'";
 
-    echo "Login Query; $query";
+    $stmt = $conn->prepare($query);
+    $stmt->bind-param("sss",$username,$password,$userType);
+    $stmt->execute();
+    $result=$stmt->get_result();
 
-    $result = mysqli_query($conn, $query);
+    if($result){
+        if(mysqli_num_rows($result)>0){
+            session_start();
+            $_SESSION['username'] = $username;
+            $_SESSION['userType'] = $userType;
 
-    if(mysqli_num_rows($result)>0){
-        echo '<script>';
-        if($userType=='admin'){
-            echo 'window.location.href="admin.php";';
-        } elseif($userType == 'perdorues'){
-            echo 'window.location.href="user.php";';
+            if($userType == 'admin'){
+                $redirectURL = 'admin.php';
+            }
+            else if($userType == 'perdorues'){
+                $redirectURL = 'index.php';
+            }
+
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="'.$redirectURL'";';
+            echo '</script>';
+            exit;
+        }else{
+            $errors[] = 'Username or password is incorrect';
         }
-        echo '</script>';
     }else{
-        $errors[]='Username ose fjalekalimi i gabuar';
+        $errors[]='Error executing the query';
     }
-}
+}   
+ 
+myslqi_close($conn);
 
 ?>
 
