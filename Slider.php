@@ -3,7 +3,7 @@
 @include 'database.php';
 
 $quoteArray = array();
-$sql="SELECT Thenja from Slider";
+$sql="SELECT Thenja from Quotes";
 $result = $conn->query($sql);
 
 if($result->num_rows>0){
@@ -14,7 +14,7 @@ if($result->num_rows>0){
 
 $imgArray = array();
 $textArray = array();
-$sql = "SELECT Kopertina, TitulliAutori FROM Slider";
+$sql = "SELECT TitulliAutori, Kopertina FROM Books";
 $result = $conn->query($sql);
 
 if($result->num_rows>0){
@@ -34,102 +34,10 @@ $conn -> close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider</title>
+    <link rel="stylesheet" type="text/css" href="Slider.css">
+
 </head>
-<style>
 
-    body {
-        background-color: #ffffff;
-        font-family: 'Times New Roman', Times, serif;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #ThënjeSection , 
-    #Content{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 500px;
-        border: 2px solid black;
-        padding:10px;
-        margin-top: 20px; 
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 500px;
-        border: 2px solid  #000000;
-        padding: 20px;
-        margin-top: 20px;
-        background-color: #ffffff;
-    }
-
-    #ThënjeSection,
-    #Content {
-        margin-top: 20px;
-    }
-
-
-    #quotes{
-        text-align: center;
-        margin-top: 10px;  
-    }
-
-    #quoteControls, 
-    #bookControls {
-        display: flex;
-        justify-content:space-between;
-        align-items: center;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    button {
-        background-color: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        font-size: 24px;
-        color: #000000;
-    }
-    
-    #Kontenti1{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-width: 500px;
-        border: 2px solid #000000;
-        padding:20px;
-        margin-top: 20px;
-        background-color: #ffffff;
-   }
-
-   #Kontenti1 img{
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    margin-top: 10px;
-   }
-
-   #textbox{
-        text-align: center;
-        margin-top: 10px;
-   }
-
-   @media screen and (max-width: 600px){
-    #ThënjeSection, #Content {
-        width: 90%;
-    }
-   }
-
-</style>
 <body>
 
     <div class="container" id="ThënjeSection">

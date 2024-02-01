@@ -24,6 +24,7 @@ form {
 
 label {
     margin-bottom: 8px;
+    font-weight: bold;
 }
 
 input {
@@ -50,8 +51,12 @@ button:hover {
 .container .error_msg{
     margin: 10px 0;
     display:block;
-    background:crimson;
+    background: red;
     color: #fff;
     border-radius:5px;
     font-size:20px;
 }
+
+
+
+

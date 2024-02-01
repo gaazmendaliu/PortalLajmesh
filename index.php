@@ -1,5 +1,5 @@
 <?php
-@include 'database.php';
+require_once 'database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +9,7 @@
     <title>User</title>
     <link rel="stylesheet" type="text/css" href="index.css">
 
-    <style>
-            
-        </style>
+    
 </head>
 <body>
 <nav class="navbar">
@@ -31,6 +29,7 @@
             <form action="search.php" method="GET">
             <input type="text" name="search" placeholder="Kërkoni...">
             <button type="submit">Kërko</button>
+        </form>
         </div>
         <div class="login-button-container">
         <button class="login-button" onclick="redirectToLogin()">Kyçu / Regjistrohu </button>
@@ -39,32 +38,65 @@
 
     
         <?php
-        
-        require_once 'database.php';
-        $sql = "SELECT * FROM Artikulli";
-        $result = $conn->query($sql);
 
-        if($result->num_rows>0){
-            while($row = $result->fetch_assoc()){
-                echo '<div class="artikull-container">';
-                echo "<h2>".$row['Titulli']."</h2>";
-                echo "<img src='uploads/".$row['Foto']."'alt='Imazhi i artikullit'>";
-                echo "<p>".$row['Permbajtja']."</p>";
-                echo "<p>Kategoria: ".$row['Kategoria']."</p>";
-                
+if (isset($_GET['category'])) {
+    $category = $_GET['category'];
+    $sql = "SELECT * FROM Artikulli WHERE Kategoria = '$category'";
+} else {
+    $sql = "SELECT * FROM Artikulli";
+}
 
-                echo"<form class='delete-form' action='fshi_artikull.php' method='post'>";
-                echo"<input type='hidden' name='article_id' value='".$row['ID']."'>";
-                echo"<input class='delete-button' type='submit' value='Fshi'>";
-                echo "</form>";
-                echo "</div>";
+$result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="artikull-container">';
+            echo "<h2>" . $row['Titulli'] . "</h2>";
+            echo "<img src='uploads/" . $row['Foto'] . "' alt='Imazhi i artikullit'>";
+            echo "<p>" . $row['Permbajtja'] . "</p>";
+
+        if (!isset($_GET['category'])) {
+            echo "<p>Kategoria: " . $row['Kategoria'] . "</p>";
         }
-    }else{
-        echo "Nuk ka artikuj";
+
+        echo "</div>";
     }
+} else {
+        echo "Nuk ka artikuj";
+}
+        
+
+    $quoteSql = "SELECT * FROM Quotes";
+    $quoteResult = $conn->query($quoteSql);
+
+    if($quoteResult->num_rows > 0) {
+        while ($quoteRow = $quoteResult->fetch_assoc()){
+            echo '<div class="quote-container">';
+            echo "<p>" . $quoteRow['Thenja'] . "</p>";
+            echo "</div>";
+        }
+    }else {
+        echo "Nuk ka thenje";
+    }
+
+    $bookSql = "SELECT * FROM Books";
+    $bookResult = $conn->query($bookSql);
+
+    if($bookResult->num_rows > 0) {
+        while ($bookRow = $bookResult->fetch_assoc()){
+            echo '<div class="book-container">';
+            echo "<img src='uploads/" . $bookRow['Kopertina'] . "' alt='Libri'>";
+            echo "<p>" . $bookRow['TitulliAutori'] . "</p>";
+            echo "</div>";
+        }
+    }else {
+        echo "Nuk ka Libra";
+    }
+
     $conn->close();
         
         ?>
+
        </div> 
 
     <footer>

@@ -1,38 +1,51 @@
 <?php
 @include 'database.php';
 
-if($_SERVER["REQUEST_METHOD"]==="POST"){
-    if(isset($_POST["addQuote"])){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["addQuote"])) {
         $newQuote = $_POST["newQuote"];
-        $sql = "INSERT INTO Slider (Thenja) VALUES ('$newQuote')";
-        $conn->query($sql);
-    }
-    elseif(isset($_POST["addBook"])){
+        $sql = "INSERT INTO Quotes (Thenja) VALUES (?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $newQuote);
+
+        if ($stmt->execute()) {
+            echo "Thenja u shtua me sukses";
+        } else {
+            echo "Nodhi nje gabim gjate shtimit te thenjes! " . $stmt->error;
+        }
+    } elseif (isset($_POST["addBook"])) {
+        $newText = $_POST["newText"];
         $newImage = $_FILES["newImage"]["name"];
-        $newText=$_POST["newText"];
-        $sql="INSERT INTO Slider (Kopertina, TitulliAutori) values ('$newImage','$newText')";
-        $conn->query($sql);
+        $sql = "INSERT INTO Books (TitulliAutori, Kopertina) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $newText, $newImage);
+
+        if ($stmt->execute()) {
+            echo "Libri u shtua me sukses!";
+        } else {
+            echo "Ndodhi nje gabim gjate shtimit te librit! " . $stmt->error;
+        }
     }
 }
 
-
-$existingQuotes=[];
-$sql = "SELECT ID, Thenja from Slider";
-$result=$conn ->query($sql);
-if($result->num_rows>0){
-    while($row = $result->fetch_assoc() ){
-        $existingQuotes[]=$row;
+$existingQuotes = [];
+$sql = "SELECT ID, Thenja FROM Quotes";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $existingQuotes[] = $row;
     }
 }
 
-$existingBooks=[];
-$sql = "SELECT ID, Kopertina, TitulliAutori from Slider";
-$result=$conn ->query($sql);
-if($result->num_rows>0){
-    while($row = $result->fetch_assoc() ){
-        $existingBooks[]=$row;
+$existingBooks = [];
+$sql = "SELECT ID, TitulliAutori, Kopertina FROM Books";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $existingBooks[] = $row;
     }
 }
+
 ?>
 
 <!DOCTYPE html>

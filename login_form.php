@@ -12,28 +12,28 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $password= md5($_POST['loginPassword']);
     $userType = $_POST['lloji_perdoruesit'];
 
-    $query = "SELECT * FROM users where Username='$username' and Fjalekalimi='$password' AND User_type ='$userType'";
+    $query = "SELECT * FROM users where Username=? AND Fjalekalimi=? AND User_type =?";
 
     $stmt = $conn->prepare($query);
-    $stmt->bind-param("sss",$username,$password,$userType);
+    $stmt->bind_param("sss",$username,$password,$userType);
     $stmt->execute();
     $result=$stmt->get_result();
 
     if($result){
         if(mysqli_num_rows($result)>0){
             session_start();
-            $_SESSION['username'] = $username;
-            $_SESSION['userType'] = $userType;
+            $_SESSION['Username'] = $username;
+            $_SESSION['User_type'] = $userType;
 
             if($userType == 'admin'){
                 $redirectURL = 'admin.php';
             }
-            else if($userType == 'perdorues'){
+            else if($userType == 'user'){
                 $redirectURL = 'index.php';
             }
 
             echo '<script type="text/javascript">';
-            echo 'window.location.href="'.$redirectURL'";';
+            echo 'window.location.href="' .$redirectURL.'";';
             echo '</script>';
             exit;
         }else{
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
 }   
  
-myslqi_close($conn);
+mysqli_close($conn);
 
 ?>
 
@@ -81,8 +81,8 @@ myslqi_close($conn);
             <input type="radio" id="admin" name="lloji_perdoruesit" value="admin">
             <label for="admin">Admin</label>
 
-            <input type="radio" id="perdorues" name="lloji_perdoruesit" value="perdorues">
-            <label for="perdorues">Perdorues</label>
+            <input type="radio" id="user" name="lloji_perdoruesit" value="user">
+            <label for="perdorues">user</label>
 
             <button type="submit" name="submit" value="submit">Kyçu</button>
             <p>Nuk keni llogari? <a href="register_form.php">Regjistrohu këtu</a></p>
