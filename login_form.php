@@ -1,15 +1,21 @@
 <?php
 
-require_once 'database.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+@include 'database.php';
 
 $errors = array();
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $username = $_POST['loginUsername'];
-    $password= $_POST['loginPassword'];
+    $password= md5($_POST['loginPassword']);
     $userType = $_POST['lloji_perdoruesit'];
 
     $query = "SELECT * FROM users where Username='$username' and Fjalekalimi='$password' AND user_type ='$userType'";
+
+    echo "Login Query; $query";
+
     $result = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($result)>0){
@@ -33,66 +39,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+    <link rel="stylesheet" type="text/css" href="login_form.css">
 
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 305px;
-            margin: auto;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 8px;
-        }
-
-        input {
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: black;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: black;
-        }
-
-        .container .error_msg{
-            margin: 10px 0;
-            display:block;
-            background:crimson;
-            color: #fff;
-            border-radius:5px;
-            font-size:20px;
-        }
-
-    </style>
 </head>
 
 

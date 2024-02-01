@@ -7,228 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
     <style>
-            *{
-                padding: 0;
-                margin: 0;
-                text-decoration: none;
-                list-style: none;
-                box-sizing: border-box;
-            }
-        
-            body {
-                font-family: 'Times New Roman', Times, serif;
-                display: flex;
-                flex-direction: column;
-                overflow-x: hidden;
-            }
-
-            nav {
-                display : flex;
-                justify-content: space-between;
-                align-items: center;
-                background: black;
-                padding: 25px;
-                margin-top: 15px;
-                width: 100%;
-                position: relative;
-                z-index: 1000;
-            }
-
-            nav label.Emri {
-                color: white;
-                font-size: 24px;
-                margin-left: 10px;
-            }
-
-            nav ul {
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: center;
-                width: 60%;
-            }
-
-            nav ul li {
-                margin: 0 10px;
-            }
-
-            nav ul li a {
-                color: white;
-                font-size:17px;
-                padding: 18px 20px;
-            }
-
-            nav ul li a:hover {
-                background-color: white;
-                color: black;
-            }
-
-            nav ul.show {
-                display: flex;
-                flex-direction: column;
-                background: black;
-                width: 100%;
-                position: absolute;
-                top: 100px;
-                left: 0;
-            }
-
-            nav ul li {
-                margin: 5px 0;
-            }
-
-            nav ul li a {
-                color: white;
-                padding: 10px;
-            }
-
-            .search-bar-container{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                padding-left: 25px;
-                position: relative;
-                top: 30px;
-                left: 0;
-                background-color: white;
-                z-index: 1000;
-            }
-            .search-bar {
-                display: flex;
-                align-items: center;
-                width: 50%;
-            }
-            .search-bar input {
-                flex: 1;
-                height: 40px;
-                padding: 10px;
-                border: 2px solid black;
-                border-radius: 20px;
-                box-sizing: border-box;
-                font-size: 14px;
-            }
-            .search-bar button {
-                background-color: white;
-                color: black;
-                height: 40px;
-                border: 2px solid black;
-                border-bottom: 3px solid black;
-                border-radius: 20px;
-                padding: 8px 12px;
-                cursor: pointer;
-                margin-left: 5px;
-            }
-            .login-button-container {
-                display: flex;
-                align-items: center;
-                margin-left: auto;
-                margin-right: 25px;
-            }
-        
-            .login-button {
-                background-color: white;
-                color: black;
-                padding: 10px;
-                border: 2px solid black;
-                border-radius: 20px;
-                cursor: pointer;
-                margin-right: 25px;
-            }
-        
-            .artikull-container{
-                max-width: 600px;
-                margin: 20px auto;
-                padding: 20px;
-                background-color: #fff;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
-                border-radius: 8px;
-                text-align: center;
-
-            }
-
-            .artikull-container h2{
-                font-size: 1.2em;
-                text-align: center;
-                margin-bottom: 10px;
-
-            }
-
-            .artikull-container img{
-                max-width: 100%;
-                height: auto;
-                margin: 0 auto;
-                margin-bottom: 10px;
-                max-height: 150px;
-
-            }
-
-            .artikull-container p{
-                line-height: 1.4;
-                text-align: center:
-
-            }
-
-            footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                padding: 20px;
-                background-color: black;
-                color: white;
-                width: 100%;
-            }
-
-            .rreth-nesh {
-                max-width: 300px;
-                margin-bottom: 20px;
-                margin-left: 30px;
-            }
-
-            .Kontakti {
-                margin-bottom: 10px;
-                margin-right: 30px;
-            }
-
-            .Kontakti li {
-                color: white !important;
-            }
-
-            .Kontakti li a {
-                color: white !important;
-            }
-
-            .copyright-footer {
-                text-align: center;
-                width: 100%;
-            }
-
-            @media only screen and (max-width: 600px) {
-                nav {
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                nav ul {
-                    display : flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-                    margin-top: 10px;
-                    }
-
-                    nav ul.show {
-                        display: flex;
-                    }
-
-                    nav label.Emri {
-                        margin-left: 0;
-                    }
-            }
-
+            
         </style>
 </head>
 <body>
@@ -241,7 +23,7 @@
             <li><a href="Teknologji.php" onclick="showContent('Teknologji')" >Teknologji</a></li>
             <li><a href="Sport.php" onclick="showContent('Sport')">Sport</a></li>
             <li><a href="Showbiz.php" onclick="showContent('Showbiz')" >Showbiz</a></li>
-            <li><a href="Slider.php" onclick="showContent('Faqe Arti')">Faqe Arti</a></li>
+            <li><a href="Slider.php" onclick="showContent('Faqe Arti')">FaqeArti</a></li>
         </ul>
     </nav>
     <div class="search-bar-container">
@@ -251,7 +33,7 @@
             <button type="submit">Kërko</button>
         </div>
         <div class="login-button-container">
-        <button class="login-button" onclick="location.href ='login_form.php'" >Kyçu / Regjistrohu </button>
+        <button class="login-button" onclick="redirectToLogin()">Kyçu / Regjistrohu </button>
         </div>
     </div>
 
@@ -323,6 +105,10 @@
 
         function showContent(category){
             console.log(`show content for ${category}`)
+        }
+
+        function redirectToLogin(){
+            window.location.href = 'login_form.php';
         }
     </script>
 
