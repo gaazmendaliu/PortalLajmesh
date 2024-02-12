@@ -66,34 +66,7 @@ $result = $conn->query($sql);
 }
         
 
-    $quoteSql = "SELECT * FROM Quotes";
-    $quoteResult = $conn->query($quoteSql);
-
-    if($quoteResult->num_rows > 0) {
-        while ($quoteRow = $quoteResult->fetch_assoc()){
-            echo '<div class="quote-container">';
-            echo "<p>" . $quoteRow['Thenja'] . "</p>";
-            echo "</div>";
-        }
-    }else {
-        echo "Nuk ka thenje";
-    }
-
-    $bookSql = "SELECT * FROM Books";
-    $bookResult = $conn->query($bookSql);
-
-    if($bookResult->num_rows > 0) {
-        while ($bookRow = $bookResult->fetch_assoc()){
-            echo '<div class="book-container">';
-            echo "<img src='uploads/" . $bookRow['Kopertina'] . "' alt='Libri'>";
-            echo "<p>" . $bookRow['TitulliAutori'] . "</p>";
-            echo "</div>";
-        }
-    }else {
-        echo "Nuk ka Libra";
-    }
-
-    $conn->close();
+    
         
         ?>
 
